@@ -20,7 +20,7 @@ public class LoginController {
     }
 
     @GetMapping(path = "/user")
-    public String getUser() {
-        return loginRepository.getLoggedInUser();
+    public LoginUser getUser() {
+        return loginRepository.getLoggedInUser("John");
     }
 }
