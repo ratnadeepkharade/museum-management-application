@@ -38,6 +38,7 @@ mat-drawer-container, mat-drawer, mat-toolbar, mat-toolbar-row, mat-list, mat-li
 }
 
 mat-drawer{
+    box-shadow: 8px 0 10px -6px #dee2e6;
 }
 
 mat-toolbar {
@@ -53,7 +54,7 @@ mat-toolbar {
 
 mat-toolbar-row {
     max-height: 60px;
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    box-shadow: 0 3px 5px -1px #DEE2E6, 0 6px 10px 0 #DEE2E6, 0 1px 18px 0 #DEE2E6
 }
 
 mat-list-option{
