@@ -27,23 +27,14 @@
     background-color: #c1375a;
     border-radius: 10px 0 0 10px;
 
-    img {
-        vertical-align: middle;
-        border-style: none;
-        width: 85%;
-        box-sizing: border-box;
-        margin-top: 125px;
-        margin-left: 25px;
-    }
-
     .logo-image {
         background-image: url("../../assets/images/login-logo.png");
         width: 85%;
-    height: 152px;
-    box-sizing: border-box;
-    margin-top: 125px;
-    margin-left: 25px;
-    background-size: 100%;
+        height: 152px;
+        box-sizing: border-box;
+        margin-top: 125px;
+        margin-left: 25px;
+        background-size: 100%;
     }
 }
 
