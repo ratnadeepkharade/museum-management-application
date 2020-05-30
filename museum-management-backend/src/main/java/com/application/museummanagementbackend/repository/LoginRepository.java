@@ -14,10 +14,10 @@ public class LoginRepository {
     public LoginUser getLoggedInUser(String id) {
         String sql = "SELECT * FROM user WHERE firstName=?";
 
-        LoginUser city = (LoginUser) jdbcTemplate.queryForObject(sql, new Object[]{id},
+        LoginUser loginUser = (LoginUser) jdbcTemplate.queryForObject(sql, new Object[]{id},
                 new BeanPropertyRowMapper(LoginUser.class));
 
-        return city;
+        return loginUser;
 
         //LoginUser loginUser;
         //loginUser = jdbcTemplate.queryForObject("select firstName from user where firstName='John'", String.class);
