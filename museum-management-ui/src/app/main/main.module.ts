@@ -9,6 +9,7 @@ import { VisitorsComponent } from './visitors/visitors.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { UsersComponent } from './users/users.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { EmployeesComponent } from './employees/employees.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    HttpClientModule
   ]
 })
 export class MainModule { }
