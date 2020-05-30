@@ -9,18 +9,18 @@ public class Employee {
     private String emailId;
     private java.util.Date dateOfBirth;
     private String roleName;
-    private int sectionId;
+    private String sectionName;
     public Employee() {
     }
 
-    public Employee(int empId, String lastName, String firstName, String emailId, Date dateOfBirth, String roleName, int sectionId) {
+    public Employee(int empId, String lastName, String firstName, String emailId, Date dateOfBirth, String roleName, String sectionName) {
         this.empId = empId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.emailId = emailId;
         this.dateOfBirth = dateOfBirth;
         this.roleName = roleName;
-        this.sectionId = sectionId;
+        this.sectionName = sectionName;
     }
 
     public int getEmpId() {
@@ -31,12 +31,12 @@ public class Employee {
         this.empId = empId;
     }
 
-    public int getSectionId() {
-        return sectionId;
+    public String getsectionName() {
+        return sectionName;
     }
 
-    public void setSectionId(int sectionId) {
-        this.sectionId = sectionId;
+    public void setsectionName(String sectionName) {
+        this.sectionName = sectionName;
     }
 
     public String getLastName() {
@@ -88,7 +88,7 @@ public class Employee {
                 ", emailId='" + emailId + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", roleName='" + roleName + '\'' +
-                ", sectionId=" + sectionId +
+                ", sectionName=" + sectionName +
                 '}';
     }
 }
