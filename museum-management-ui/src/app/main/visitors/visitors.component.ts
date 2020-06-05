@@ -4,15 +4,16 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RESTService } from 'src/app/services/rest.service';
 
 export interface PeriodicElement {
-  visitorId: string;
+  visitorId: number;
   firstName: string;
   lastName: string;
   gender: string;
-  age:string;
-  type:string;
-  section:string;
+  age:number;
+  category:string;
+  section:number;
 }
 
 export interface DialogData {
@@ -21,17 +22,10 @@ export interface DialogData {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
-  {visitorId: '1', firstName: 'John', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234}
 ];
 
 @Component({
@@ -42,18 +36,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class VisitorsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['select', 'visitorId', 'firstName', 'lastName', 'gender', 'age', 'type', 'section'];
+  displayedColumns: string[] = ['select', 'visitorId', 'firstName', 'lastName', 'gender', 'age', 'category', 'section'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
   animal: string;
   name: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private restService:RESTService) {
+
+  }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.restService.getRequest('visitors/visitorList').subscribe((data: any[])=>{
+      console.log(data);
+      this.dataSource = new MatTableDataSource<PeriodicElement>(data);
+    }) 
   }
   
   /** Whether the number of selected elements matches the total number of rows. */
@@ -97,7 +98,7 @@ export class VisitorsComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
       if(result === "save") {
-        ELEMENT_DATA.push({visitorId: '50', firstName: 'Johnson', lastName:'Doe', gender: 'H', age:'12', type:'Full day', section:'Modern Art'},)
+        ELEMENT_DATA.push({visitorId: 50, firstName: 'Johnson', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:1})
         this.dataSource = new MatTableDataSource(ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
       }
