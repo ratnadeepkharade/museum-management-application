@@ -1,7 +1,6 @@
 package com.application.museummanagementbackend.repository;
 
 import com.application.museummanagementbackend.model.Employee;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,6 +21,13 @@ public class EmployeeRepository {
 
         return employees;
 
+
+    }
+    public void  deleteEmployee(int empId) {
+        String sql = "delete  FROM employee where empId=?";
+        jdbcTemplate.update(sql,empId);
+        System.out.println("Deleted Record with ID = " + empId );
+        return;
 
     }
 }

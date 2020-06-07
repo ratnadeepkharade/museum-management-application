@@ -1,24 +1,30 @@
 <p>Employee Details</p>
  <mat-table class="employee-table mat-elevation-z8" [dataSource]="dataSource">
+    <ng-container matColumnDef="checked">
+        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
     <ng-container  matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
-        <mat-cell *matCellDef="let dataSource">{{dataSource.firstName}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{element.firstName}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
-        <mat-cell *matCellDef="let dataSource">{{dataSource.lastName}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{element.lastName}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="roleName">
         <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
-        <mat-cell *matCellDef="let dataSource">{{dataSource.roleName}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{element.roleName}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="sectionName">
         <mat-header-cell *matHeaderCellDef>Department</mat-header-cell>
-        <mat-cell *matCellDef="let dataSource">{{dataSource.sectionName}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{element.sectionName}}</mat-cell>
     </ng-container>
     <ng-container  matColumnDef="emailId">
         <mat-header-cell *matHeaderCellDef>Email Id</mat-header-cell>
-        <mat-cell *matCellDef="let dataSource">{{dataSource.emailId}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{element.emailId}}</mat-cell>
     </ng-container>
    
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
