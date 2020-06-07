@@ -53,3 +53,10 @@
         </div>
     </div>
 </mat-drawer-container>
+
+  <div class="d-flex justify-content-center loading-overlay" *ngIf="loaderService.showLoader">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  

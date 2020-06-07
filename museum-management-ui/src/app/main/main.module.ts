@@ -11,16 +11,23 @@ import { UsersComponent } from './users/users.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RESTService } from '../services/rest.service';
+import { FormsModule } from '@angular/forms';
+import { AddVisitorComponent } from './visitors/add-visitor/add-visitor.component';
+import { LoaderService } from '../services/loader.service';
 
 
 @NgModule({
-  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent],
+  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent, AddVisitorComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     DemoMaterialModule,
+    FormsModule,
     HttpClientModule
   ],
-  providers: [RESTService]
+  providers: [
+    RESTService,
+    LoaderService
+  ]
 })
 export class MainModule { }

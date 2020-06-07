@@ -120,4 +120,14 @@ mat-list-item:hover .mat-list-icon, mat-list-item:hover {
     color: #c1375a!important;
     cursor: pointer;
 }
+
+.loading-overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+    background-color: rgba(0,0,0,0.2);
+}
   

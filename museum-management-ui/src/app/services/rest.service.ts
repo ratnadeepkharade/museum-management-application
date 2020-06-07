@@ -12,4 +12,9 @@ export class RESTService {
   getRequest(url){
     return this.http.get(this.REST_API_SERVER + url);
   }
+
+  postRequest(url, data){
+    return this.http.post(this.REST_API_SERVER + url, data);
+  }
+
 }

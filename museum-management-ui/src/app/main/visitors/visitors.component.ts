@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RESTService } from 'src/app/services/rest.service';
+import { AddVisitorComponent } from './add-visitor/add-visitor.component';
 
 export interface PeriodicElement {
   visitorId: number;
@@ -13,7 +14,7 @@ export interface PeriodicElement {
   gender: string;
   age:number;
   category:string;
-  section:number;
+  sectionId:number;
 }
 
 export interface DialogData {
@@ -22,10 +23,10 @@ export interface DialogData {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234},
-  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234},
-  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234},
-  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:9234}
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', sectionId:9234},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', sectionId:9234},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', sectionId:9234},
+  {visitorId: 1, firstName: 'John', lastName:'Doe', gender: 'H', age:12, category:'Full day', sectionId:9234}
 ];
 
 @Component({
@@ -36,7 +37,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class VisitorsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['select', 'visitorId', 'firstName', 'lastName', 'gender', 'age', 'category', 'section'];
+  displayedColumns: string[] = ['select', 'visitorId', 'firstName', 'lastName', 'gender', 'age', 'category', 'sectionId'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -89,8 +90,8 @@ export class VisitorsComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
-      width: '250px',
+    const dialogRef = this.dialog.open(AddVisitorComponent, {
+      width: '520px',
       data: {name: this.name, animal: this.animal}
     });
 
@@ -98,36 +99,12 @@ export class VisitorsComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
       if(result === "save") {
-        ELEMENT_DATA.push({visitorId: 50, firstName: 'Johnson', lastName:'Doe', gender: 'H', age:12, category:'Full day', section:1})
-        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-        this.dataSource.paginator = this.paginator;
+        //ELEMENT_DATA.push({visitorId: 50, firstName: 'Johnson', lastName:'Doe', gender: 'H', age:12, category:'Full day', sectionId:1})
+        //this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        //this.dataSource.paginator = this.paginator;
       }
     });
 
   }
 
-}
-
-@Component({
-  selector: 'dialog-content-example-dialog',
-  template: `
-  <h1 mat-dialog-title>Add Visitor</h1>
-  <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-  <div mat-dialog-actions>
-    <button mat-raised-button (click)="onYesClick()">Save</button>
-    <button mat-raised-button (click)="onNoClick()">Cancel</button>
-  </div>
-  `,
-})
-export class DialogContentExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogContentExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close("cancel");
-  }
-  onYesClick() {
-    this.dialogRef.close("save");
-  }
 }

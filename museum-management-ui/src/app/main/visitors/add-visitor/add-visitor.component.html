@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Add Visitor</h1>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input [(ngModel)]="visitor.firstName" type="text" class="form-control" id="firstName" placeholder="Enter first name">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input [(ngModel)]="visitor.lastName" type="text" class="form-control" id="lastName" placeholder="Enter last name">
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <input [(ngModel)]="visitor.gender" type="text" class="form-control" id="gender" placeholder="Enter gender">
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input [(ngModel)]="visitor.age" type="number" pattern="\d*" maxlength="2"  class="form-control" id="age" placeholder="Enter age">
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <input [(ngModel)]="visitor.category" type="text" class="form-control" id="category" placeholder="Enter category">
+  </div>
+  <div class="form-group">
+    <label for="section">Section</label>
+    <input [(ngModel)]="visitor.sectionId" type="number" pattern="\d*" maxlength="6" class="form-control" id="category" placeholder="Enter section">
+  </div>
+  <div mat-dialog-actions style="display: flex; justify-content: space-between;">
+    <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="onYesClick()">Save</button>
+    <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="onNoClick()">Cancel</button>
+  </div>
