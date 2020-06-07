@@ -7,7 +7,7 @@ public class Employee {
     private String lastName;
     private String firstName;
     private String emailId;
-    private java.util.Date dateOfBirth;
+    private Date dateOfBirth;
     private String roleName;
     private String sectionName;
     public Employee() {
