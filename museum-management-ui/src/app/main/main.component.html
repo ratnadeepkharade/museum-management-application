@@ -4,10 +4,12 @@
             <div class="logo-container">
                 <div class="logo-image"></div>
             </div>
+            <div class="welcome-message"><i class="fas fa-landmark"></i>National Museum</div>
         </div>
         <mat-list>
             <mat-list-item routerLink="/main/dashboard">
-                <mat-icon class="mat-list-icon">dashboard</mat-icon> <div>Dashboard</div>
+                <mat-icon class="mat-list-icon">dashboard</mat-icon>
+                <div>Dashboard</div>
             </mat-list-item>
             <mat-list-item routerLink="/main/visitors">
                 <mat-icon class="mat-list-icon">person_pin</mat-icon> Visitors
@@ -23,19 +25,29 @@
                 <mat-icon class="mat-list-icon">supervisor_account</mat-icon>
                 Users
             </mat-list-item>
-            
+
         </mat-list>
     </mat-drawer>
 
     <div class="example-sidenav-content">
-        <mat-toolbar>
-            <mat-toolbar-row>
-                <mat-icon (click)="drawer.toggle()" class="menu-icon" aria-hidden="false"
-                    aria-label="Example heart icon">menu</mat-icon>
-                <button class="btn btn-primary" routerLink="/login" style="position: absolute;
-                right: 210px;">Logout</button>
-            </mat-toolbar-row>
-        </mat-toolbar>
+        <div class="toolbar-wrapper">
+            <mat-toolbar>
+                <mat-toolbar-row>
+                    <div class="toolbar-inner">
+                        <div>
+                            <mat-icon (click)="drawer.toggle()" class="menu-icon" aria-hidden="false"
+                                aria-label="Example heart icon">menu</mat-icon>
+                        </div>
+                        <div class="action-item-wraper" routerLink="/login">
+                            <button mat-raised-button> <div class="action-icon"><i class="fas fa-sign-out-alt"></i></div>
+                                <div class="action-text">logout</div> </button>
+                            
+                        </div>
+                    </div>
+                </mat-toolbar-row>
+            </mat-toolbar>
+        </div>
+
         <div class="content-inner">
             <router-outlet></router-outlet>
         </div>

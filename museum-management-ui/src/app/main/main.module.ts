@@ -10,6 +10,7 @@ import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { UsersComponent } from './users/users.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RESTService } from '../services/rest.service';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     MainRoutingModule,
     DemoMaterialModule,
     HttpClientModule
-  ]
+  ],
+  providers: [RESTService]
 })
 export class MainModule { }

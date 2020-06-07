@@ -1,11 +1,5 @@
 <p>Employee Details</p>
- <mat-table class="employee-table mat-elevation-z8" [dataSource]="dataSource">
-    <ng-container matColumnDef="checked">
-        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
-        <mat-cell *matCellDef="let element"> 
-          <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
-        </mat-cell>
-      </ng-container>
+ <mat-table class="employee-table mat-elevation-z3" [dataSource]="dataSource">
     <ng-container  matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.firstName}}</mat-cell>
