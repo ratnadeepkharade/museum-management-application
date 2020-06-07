@@ -9,9 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class EmployeesComponent implements OnInit {
   private REST_API_SERVER = "http://localhost:8080/api/employee/employeeList";
 
-  employee : any="";
+ 
   dataSource  = [];
-  tableColumns  :  string[] = ['firstName', 'lastName','roleName','sectionName','emailId'];
+  tableColumns  :  string[] = ['checked','firstName', 'lastName','roleName','sectionName','emailId'];
   constructor(private http:HttpClient) { }
   ngOnInit(): void {
     this.sendGetRequest().subscribe((data: any[])=>{
