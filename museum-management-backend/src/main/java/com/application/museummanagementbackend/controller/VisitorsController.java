@@ -3,10 +3,7 @@ package com.application.museummanagementbackend.controller;
 import com.application.museummanagementbackend.model.Visitor;
 import com.application.museummanagementbackend.repository.VisitorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,13 @@ public class VisitorsController {
     @GetMapping(path = "/visitorList")
     public List<Visitor> getAllVisitors() {
         return  visitorsRepository.getAllVisitors();
+    }
+
+    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
+    String addVisitor(@RequestBody Visitor visitor) {
+
+        visitorsRepository.save(visitor);
+        System.out.println("Adding :"+visitor);
+        return "added " + visitor;
     }
 }

@@ -2,24 +2,33 @@ package com.application.museummanagementbackend.model;
 
 public class Visitor {
     private int visitorId;
-    private String lastName;
     private String firstName;
+    private String lastName;
     private String gender;
     private int age;
     private String category;
-    private int section;
+    private int sectionId;
 
     public Visitor() {
     }
 
-    public Visitor(int visitorId, String lastName, String firstName, String gender, int age, String category, int section) {
+    public Visitor(String firstName, String lastName, String gender, int age, String category, int sectionId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.category = category;
+        this.sectionId = sectionId;
+    }
+
+    public Visitor(int visitorId, String lastName, String firstName, String gender, int age, String category, int sectionId) {
         this.visitorId = visitorId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.gender = gender;
         this.age = age;
         this.category = category;
-        this.section = section;
+        this.sectionId = sectionId;
     }
 
     public int getVisitorId() {
@@ -70,12 +79,12 @@ public class Visitor {
         this.category = category;
     }
 
-    public int getSection() {
-        return section;
+    public int getSectionId() {
+        return sectionId;
     }
 
-    public void setSection(int section) {
-        this.section = section;
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
     }
 
     @Override
@@ -87,7 +96,7 @@ public class Visitor {
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
                 ", category='" + category + '\'' +
-                ", section=" + section +
+                ", sectionId=" + sectionId +
                 '}';
     }
 }
