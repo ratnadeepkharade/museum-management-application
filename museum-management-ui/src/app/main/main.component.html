@@ -39,9 +39,11 @@
                                 aria-label="Example heart icon">menu</mat-icon>
                         </div>
                         <div class="action-item-wraper" routerLink="/login">
-                            <button mat-raised-button> <div class="action-icon"><i class="fas fa-sign-out-alt"></i></div>
-                                <div class="action-text">logout</div> </button>
-                            
+                            <button mat-raised-button>
+                                <div class="action-icon"><i class="fas fa-sign-out-alt"></i></div>
+                                <div class="action-text">logout</div>
+                            </button>
+
                         </div>
                     </div>
                 </mat-toolbar-row>
@@ -54,9 +56,8 @@
     </div>
 </mat-drawer-container>
 
-  <div class="d-flex justify-content-center loading-overlay" *ngIf="loaderService.showLoader">
+<div class="d-flex justify-content-center loading-overlay" *ngIf="loaderService.showLoader">
     <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+        <span class="sr-only">Loading...</span>
     </div>
-  </div>
-  
+</div>

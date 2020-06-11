@@ -14,11 +14,29 @@
     }
 
     .action-item-wraper{
+        cursor: pointer;
         margin-left: 16px;
+    }
+
+    .action-item-wraper:hover{
+        color: #c1375a;
     }
 
     .action-icon {
         font-size: 18px;
         margin-right: 8px;
     }
+}
+
+.row-action-wrapper{
+    font-size: 18px;
+    text-align: center;
+
+    i{
+        margin-right: 10px;
+    }
+    i:hover{
+        cursor: pointer;
+        color: #c1375a;
+    }  
 }

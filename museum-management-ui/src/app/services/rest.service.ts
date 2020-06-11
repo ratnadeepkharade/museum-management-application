@@ -17,4 +17,12 @@ export class RESTService {
     return this.http.post(this.REST_API_SERVER + url, data);
   }
 
+  putRequest(url, data){
+    return this.http.put(this.REST_API_SERVER + url, data);
+  }
+
+  deleteRequest(url){
+    return this.http.delete(this.REST_API_SERVER + url);
+  }
+
 }
