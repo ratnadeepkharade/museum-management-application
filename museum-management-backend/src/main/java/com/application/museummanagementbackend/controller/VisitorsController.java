@@ -28,10 +28,23 @@ public class VisitorsController {
     }
 
     @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
-    String addVisitor(@RequestBody Visitor visitor) {
-
+    public String addVisitor(@RequestBody Visitor visitor) {
         visitorsRepository.save(visitor);
         System.out.println("Adding :"+visitor);
         return "added " + visitor;
+    }
+
+    @PutMapping(path = "/update", consumes = "application/json", produces = "application/json")
+    public String updateVisitor(@RequestBody Visitor visitor) {
+        visitorsRepository.update(visitor);
+        System.out.println("Updating :"+visitor);
+        return "Updated " + visitor;
+    }
+
+    @DeleteMapping(path = "/delete/{visitorId}")
+    public String deleteEmployee(@PathVariable int visitorId) {
+        visitorsRepository.deleteVisitor(visitorId);
+        System.out.println("Updating :"+visitorId);
+        return "Updated " + visitorId;
     }
 }
