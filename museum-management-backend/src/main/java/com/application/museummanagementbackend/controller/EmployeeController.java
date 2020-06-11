@@ -1,5 +1,6 @@
 package com.application.museummanagementbackend.controller;
 import com.application.museummanagementbackend.model.Employee;
+import com.application.museummanagementbackend.model.Visitor;
 import com.application.museummanagementbackend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,12 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable int empId) {
 
         employeeRepository.deleteEmployee(empId);
+    }
+    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
+    String addEmployee(@RequestBody Employee employee) {
+
+        employeeRepository.save(employee);
+        System.out.println("Adding :"+employee);
+        return "added " + employee;
     }
 }

@@ -7,18 +7,16 @@ public class Employee {
     private String lastName;
     private String firstName;
     private String emailId;
-    private Date dateOfBirth;
     private String roleName;
     private String sectionName;
     public Employee() {
     }
 
-    public Employee(int empId, String lastName, String firstName, String emailId, Date dateOfBirth, String roleName, String sectionName) {
+    public Employee(int empId, String lastName, String firstName, String emailId, String roleName, String sectionName) {
         this.empId = empId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.emailId = emailId;
-        this.dateOfBirth = dateOfBirth;
         this.roleName = roleName;
         this.sectionName = sectionName;
     }
@@ -63,13 +61,7 @@ public class Employee {
         this.emailId = emailId;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 
     public String getRoleName() {
         return roleName;
@@ -86,7 +78,6 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", emailId='" + emailId + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
                 ", roleName='" + roleName + '\'' +
                 ", sectionName=" + sectionName +
                 '}';

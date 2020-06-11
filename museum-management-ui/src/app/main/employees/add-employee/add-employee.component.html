@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Add Employee</h1>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input [(ngModel)]="employee.firstName" type="text" class="form-control" id="firstName" placeholder="Enter first name">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input [(ngModel)]="employee.lastName" type="text" class="form-control" id="lastName" placeholder="Enter last name">
+  </div>
+  <div class="form-group">
+    <label for="roleName">Role Name</label>
+    <input [(ngModel)]="employee.roleName" type="text" class="form-control" id="roleName" placeholder="Enter Role Name">
+  </div>
+  
+  <div class="form-group">
+    <label for="sectionName">Section Name</label>
+    <input [(ngModel)]="employee.sectionName" type="text" class="form-control" id="sectionName" placeholder="Enter Section Name">
+  </div>
+  <div class="form-group">
+    <label for="emailId">email Id</label>
+    <input [(ngModel)]="employee.emailId" type="text" class="form-control" id="emailId" placeholder="Enter Email Id">
+  </div>
+  
+  <div mat-dialog-actions style="display: flex; justify-content: space-between;">
+    <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="onYesClick()">Save</button>
+    <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="onNoClick()">Cancel</button>
+  </div>

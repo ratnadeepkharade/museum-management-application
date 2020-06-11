@@ -14,10 +14,11 @@ import { RESTService } from '../services/rest.service';
 import { FormsModule } from '@angular/forms';
 import { AddVisitorComponent } from './visitors/add-visitor/add-visitor.component';
 import { LoaderService } from '../services/loader.service';
+import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 
 
 @NgModule({
-  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent, AddVisitorComponent],
+  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent, AddVisitorComponent, AddEmployeeComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
