@@ -24,16 +24,25 @@ public class EmployeeController {
     public List<Employee>  getAllEmployee() {
         return  employeeRepository.getAllEmployee();
     }
-    @DeleteMapping(path = "/deleteEmployee/{empId}")
-    public void deleteEmployee(@PathVariable int empId) {
+    @DeleteMapping(path = "/delete/{empId}")
+    public String deleteEmployee(@PathVariable int empId) {
 
         employeeRepository.deleteEmployee(empId);
+        System.out.println("Deleteing :"+empId);
+        return "Deleted " + empId;
     }
     @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
-    String addEmployee(@RequestBody Employee employee) {
+     public String addEmployee(@RequestBody Employee employee) {
 
         employeeRepository.save(employee);
         System.out.println("Adding :"+employee);
         return "added " + employee;
     }
+    @PutMapping(path = "/update", consumes = "application/json", produces = "application/json")
+    public String updateEmployee(@RequestBody Employee employee) {
+        employeeRepository.update( employee);
+        System.out.println("Updating :"+ employee);
+        return "Updated " +  employee;
+    }
+
 }
