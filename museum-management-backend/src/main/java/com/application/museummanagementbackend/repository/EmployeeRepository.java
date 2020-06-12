@@ -29,11 +29,13 @@ public class EmployeeRepository {
 
 
     }
-    public void  deleteEmployee(int empId) {
+    public int deleteVisitor(int visitorId) {
+        String sql = "delete  FROM visitors where visitorId=?";
+        return jdbcTemplate.update(sql,visitorId);
+    }
+    public int  deleteEmployee(int empId) {
         String sql = "delete  FROM employee where empId=?";
-        jdbcTemplate.update(sql,empId);
-        System.out.println("Deleted Record with ID = " + empId );
-        return;
+        return jdbcTemplate.update(sql,empId);
 
     }/*
     public void  save(String lastName, String firstName, String emailId, Date dateOfBirth, String roleName, String sectionName) {
@@ -47,6 +49,11 @@ public class EmployeeRepository {
         return jdbcTemplate.update(
                 "CALL InsertintoEmployee(?,?,?,?,?);",
                  emp.getLastName(),emp.getFirstName(), emp.getEmailId(),emp.getRoleName(),emp.getsectionName());
+    }
+    public int  update(Employee emp){
+        return jdbcTemplate.update(
+                "CALL UpdateEmployee(?,?,?,?,?,?);",
+                emp.getEmpId(),emp.getLastName(),emp.getFirstName(), emp.getEmailId(),emp.getRoleName(),emp.getsectionName());
     }
 
 }
