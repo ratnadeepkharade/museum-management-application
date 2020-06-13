@@ -1,18 +1,21 @@
 package com.application.museummanagementbackend.model;
 
 public class Visitor {
-    private int visitorId;
+    private long visitorId;
     private String firstName;
     private String lastName;
     private String gender;
     private int age;
     private String category;
-    private int sectionId;
+    private long entryDate;
+    private long sectionId;
+    private String sectionName;
 
     public Visitor() {
     }
 
-    public Visitor(String firstName, String lastName, String gender, int age, String category, int sectionId) {
+    //for creating visitor
+    public Visitor(String firstName, String lastName, String gender, int age, String category, long sectionId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -21,7 +24,8 @@ public class Visitor {
         this.sectionId = sectionId;
     }
 
-    public Visitor(int visitorId, String lastName, String firstName, String gender, int age, String category, int sectionId) {
+    //for updating visitor
+    public Visitor(long visitorId, String lastName, String firstName, String gender, int age, String category, long sectionId) {
         this.visitorId = visitorId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -31,11 +35,24 @@ public class Visitor {
         this.sectionId = sectionId;
     }
 
-    public int getVisitorId() {
+    //for getting visitor
+    public Visitor(long visitorId, String firstName, String lastName, String gender, int age, String category, long entryDate, long sectionId, String sectionName) {
+        this.visitorId = visitorId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.category = category;
+        this.entryDate = entryDate;
+        this.sectionId = sectionId;
+        this.sectionName = sectionName;
+    }
+
+    public long getVisitorId() {
         return visitorId;
     }
 
-    public void setVisitorId(int visitorId) {
+    public void setVisitorId(long visitorId) {
         this.visitorId = visitorId;
     }
 
@@ -79,24 +96,27 @@ public class Visitor {
         this.category = category;
     }
 
-    public int getSectionId() {
+    public long getSectionId() {
         return sectionId;
     }
 
-    public void setSectionId(int sectionId) {
+    public void setSectionId(long sectionId) {
         this.sectionId = sectionId;
     }
 
-    @Override
-    public String toString() {
-        return "Visitor{" +
-                "visitorId=" + visitorId +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", category='" + category + '\'' +
-                ", sectionId=" + sectionId +
-                '}';
+    public String getSectionName() {
+        return sectionName;
+    }
+
+    public void setSectionName(String sectionName) {
+        this.sectionName = sectionName;
+    }
+
+    public long getEntryDate() {
+        return entryDate;
+    }
+
+    public void setEntryDate(long entryDate) {
+        this.entryDate = entryDate;
     }
 }

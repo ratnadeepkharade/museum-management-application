@@ -1,6 +1,5 @@
 package com.application.museummanagementbackend.repository;
 
-import com.application.museummanagementbackend.model.Customer;
 import com.application.museummanagementbackend.model.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,7 +15,10 @@ public class VisitorsRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Visitor> getAllVisitors() {
-        String sql = "SELECT * FROM visitors";
+        //String sql = "SELECT * FROM visitors";
+        String sql ="SELECT visitors.visitorID,visitors.firstName,visitors.lastName,visitors.gender,visitors.age,visitors.category,visitors.entryDate,visitors.sectionId,sections.sectionName " +
+                "FROM visitors " +
+                "INNER JOIN sections ON sections.sectionID=visitors.sectionID";
 
         List<Visitor> visitors = (List<Visitor>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(Visitor.class));
 
@@ -25,8 +27,8 @@ public class VisitorsRepository {
 
     public int save(Visitor visitor) {
         return jdbcTemplate.update(
-            "insert into visitors (firstName, lastName, gender, age, category, sectionId) values(?,?,?,?,?,?)",
-            visitor.getFirstName(), visitor.getLastName(), visitor.getGender(), visitor.getAge(), visitor.getCategory(),visitor.getSectionId());
+            "insert into visitors (firstName, lastName, gender, age, category, sectionId, entryDate) values(?,?,?,?,?,?,?)",
+            visitor.getFirstName(), visitor.getLastName(), visitor.getGender(), visitor.getAge(), visitor.getCategory(),visitor.getSectionId(), System.currentTimeMillis());
     }
 
     public int update(Visitor visitor) {
