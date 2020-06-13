@@ -16,6 +16,8 @@ export class AddVisitorComponent implements OnInit {
     firstName: '', lastName: '', gender: '', age: '', category: '', sectionId: '', visitorId: ''
   };
 
+  sections = [];
+
   constructor(public dialogRef: MatDialogRef<AddVisitorComponent>,
     private restService: RESTService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,6 +32,7 @@ export class AddVisitorComponent implements OnInit {
     console.log(this.data);
     if (this.data) {
       this.visitor = this.data;
+      this.getSectionsRESTCall();
     }
   }
 
@@ -45,6 +48,15 @@ export class AddVisitorComponent implements OnInit {
     }
   }
 
+  getSectionsRESTCall(){
+    this.restService.getRequest('sections/sectionList').subscribe((data: any[]) => {
+      console.log(data);
+      this.sections = data;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   addVisitorRESTCall() {
     let obj = {
       firstName: this.visitor.firstName,
@@ -52,7 +64,7 @@ export class AddVisitorComponent implements OnInit {
       gender: this.visitor.gender,
       age: this.visitor.age,
       category: this.visitor.category,
-      sectionId: this.visitor.sectionId
+      sectionId: 1
     };
     this.loaderService.show();
     this.restService.postRequest('visitors/add', obj).subscribe((data: any[]) => {

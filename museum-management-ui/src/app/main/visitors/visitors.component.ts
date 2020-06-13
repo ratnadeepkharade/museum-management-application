@@ -13,13 +13,15 @@ export interface VisitorModel {
   firstName: string;
   lastName: string;
   gender: string;
+  entryDate: number;
   age: number;
   category: string;
   sectionId: number;
+  sectionName: string;
 }
 
 const VISITOR_DATA: VisitorModel[] = [
-  { visitorId: 1, firstName: 'John', lastName: 'Doe', gender: 'H', age: 12, category: 'Full day', sectionId: 9234 }
+  { visitorId: 1, firstName: 'John', lastName: 'Doe', entryDate:28461824, gender: 'H', age: 12, category: 'Full day', sectionId: 1131, sectionName: '9234' }
 ];
 
 @Component({
@@ -30,7 +32,7 @@ const VISITOR_DATA: VisitorModel[] = [
 export class VisitorsComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  displayedColumns: string[] = ['visitorId', 'firstName', 'lastName', 'gender', 'age', 'category', 'sectionId', 'actions'];
+  displayedColumns: string[] = ['visitorId', 'firstName', 'lastName', 'entryDate' ,'gender', 'age', 'category', 'sectionName', 'actions'];
   dataSource = new MatTableDataSource<VisitorModel>(VISITOR_DATA);
 
   constructor(public dialog: MatDialog,
@@ -71,7 +73,7 @@ export class VisitorsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "save") {
-
+        this.showVisitorData();
       }
     });
   }
@@ -110,7 +112,6 @@ export class VisitorsComponent implements OnInit {
       }
     });
   }
-
 }
 
 
