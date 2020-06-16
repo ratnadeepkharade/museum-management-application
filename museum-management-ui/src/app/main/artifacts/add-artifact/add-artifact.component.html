@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>{{mode}} Artifact</h1>
+<mat-dialog-content class="mat-typography">
+  <div class="form-group">
+    <label for="artifactName">Artifact Name</label>
+    <input [(ngModel)]="artifact.artifactName" type="text" class="form-control" id="artifactName" placeholder="Enter Artifact Name">
+  </div>
+  
+  <div class="form-group">
+    <label for="artifactType">Artifact Type</label><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Type</mat-label>
+      <mat-select [(value)]="artifact.artifactType">
+        <mat-option value="Painting">Painting</mat-option>
+        <mat-option value="Sculpture">Sculpture</mat-option>
+        
+      </mat-select>
+    </mat-form-field>
+    </div>
+    <!-- <input [(ngModel)]="visitor.gender" type="text" class="form-control" id="gender" placeholder="Enter gender"> -->
+     <!-- <div class="form-group" *ngIf="artifact.artifactType == 'Painting'">
+      <div class="form-group">
+        <label for="width">Width</label>
+        <input [(ngModel)]="artifact.width" type="text" class="form-control" id="width" placeholder="Enter Width">
+      </div>
+      <div class="form-group">
+        <label for="height">Height</label>
+        <input [(ngModel)]="artifact.height" type="text" class="form-control" id="height" placeholder="Enter Height">
+      </div>
+      <div class="form-group">
+        <label for="artist">Artist</label>
+        <input [(ngModel)]="artifact.artist" type="text" class="form-control" id="artist" placeholder="Enter Artist Name">
+      </div> 
+      </div>  -->
+      <!-- <input [(ngModel)]="visitor.sectionId" type="number" pattern="\d*" maxlength="6" class="form-control" id="category" placeholder="Enter section"> -->
+  
+   <!--  <div class="form-group" *ngIf="artifact.artifactType == 'Sculpture'">
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input [(ngModel)]="artifact.weight" type="text" class="form-control" id="weight" placeholder="Enter weight">
+      </div>
+      <div class="form-group">
+        <label for="artistsculpt">Artist</label>
+        <input [(ngModel)]="artifact.artistsculpt" type="text" class="form-control" id="artistsculpt" placeholder="Enter artist Name">
+      </div>  </div>-->
+    
+      <!-- <input [(ngModel)]="visitor.sectionId" type="number" pattern="\d*" maxlength="6" class="form-control" id="category" placeholder="Enter section"> -->
+    
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input [(ngModel)]="artifact.amount" type="text" class="form-control" id="amount" placeholder="Enter amount">
+    </div>
+    <div class="form-group">
+      <label for="acquiredFrom">Acquired From</label>
+      <input [(ngModel)]="artifact.acquiredFrom" type="text" class="form-control" id="acquiredFrom" placeholder="Enter Acquired From">
+    </div>
+    <div class="form-group">
+      <label for="sectionid">Section Id</label>
+      <input [(ngModel)]="artifact.sectionid" type="text" class="form-control" id="sectionid" placeholder="Enter Section id">
+    </div>
+      <div class="form-group">
+        <label for="empid">Maintained By </label>
+        <input [(ngModel)]="artifact.empid" type="text" class="form-control" id="empid" placeholder="Enter empid ">
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity </label>
+        <input [(ngModel)]="artifact.quantity" type="text" class="form-control" id="quantity" placeholder="Enter Quantity">
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+        <button mat-stroked-button (click)="onYesClick()">Save</button>
+    </mat-dialog-actions>
