@@ -42,6 +42,7 @@ public class MuseumManagementBackendApplication {
 
     void startCustomerApp() {
         jdbcTemplate.execute("drop table if exists Visitors");
+
 		jdbcTemplate.execute("drop table if exists Sections");
 		jdbcTemplate.execute("CREATE TABLE Sections (" +
 				"sectionId BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY," +

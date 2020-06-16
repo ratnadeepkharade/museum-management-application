@@ -1,1 +1,75 @@
-<p>artifacts works!</p>
+<div class="table-header">
+    <div class="table-title">
+        <h3> Artifact List </h3>
+    </div>
+    <div class="actions-wrapper">
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Enter search text">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        &nbsp;&nbsp;
+       
+        <button mat-stroked-button (click)="openAddDialog()">
+            <div class="action-icon"><i class="fas fa-plus-square"></i></div>
+            <div class="action-text">Add</div>
+        </button>
+    </div>
+</div>
+
+<div width=100%>
+    <table mat-table [dataSource]="dataSource" matSort width=100%>
+        <ng-container matColumnDef="artifactsID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Artifact ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.artifactsID}} </td>
+        </ng-container>
+       
+        <ng-container matColumnDef="artifactName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Artifact Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.artifactName}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="dateArrived">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Arrived </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateArrived | date:'hh:mm'}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="artifactType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Artifact Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.artifactType}} </td>
+        </ng-container>
+        <ng-container matColumnDef="sectionName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Section </th>
+            <td mat-cell *matCellDef="let element"> {{element.sectionName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Maintained By </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acquiredFrom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acquired From </th>
+            <td mat-cell *matCellDef="let element"> {{element.acquiredFrom}} </td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity</th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="width: 80px;"></th>
+            <td mat-cell *matCellDef="let element" style="width: 80px; text-align: center;">
+                <div class="row-action-wrapper" style="width: 100%; text-align: center;">
+                    <i class="far fa-edit" (click)="openEditDialog(element)"></i>
+                    <i class="far fa-trash-alt" (click)="openDeleteDialog(element)"></i>
+                </div>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+</div>
