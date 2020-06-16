@@ -1,57 +1,57 @@
 <h1 mat-dialog-title>{{mode}} Visitor</h1>
-<div class="form-group">
-  <label for="firstName">First Name</label>
-  <input [(ngModel)]="visitor.firstName" type="text" class="form-control" id="firstName" placeholder="Enter first name">
-</div>
-<div class="form-group">
-  <label for="lastName">Last Name</label>
-  <input [(ngModel)]="visitor.lastName" type="text" class="form-control" id="lastName" placeholder="Enter last name">
-</div>
-<div class="form-group">
-  <label for="gender">Gender</label><br>
-  <mat-form-field appearance="outline">
-    <mat-label>Select Gender</mat-label>
-    <mat-select [(value)]="visitor.gender">
-      <mat-option value="Female">Female</mat-option>
-      <mat-option value="Male">Male</mat-option>
-      <mat-option value="Other">Other</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <!-- <input [(ngModel)]="visitor.gender" type="text" class="form-control" id="gender" placeholder="Enter gender"> -->
-</div>
-<div class="form-group">
-  <label for="age">Age</label>
-  <input [(ngModel)]="visitor.age" type="number" pattern="\d*" maxlength="2" class="form-control" id="age"
-    placeholder="Enter age">
-</div>
-<div class="form-group">
-  <label for="category">Category</label><br>
-  <mat-form-field appearance="outline">
-    <mat-label>Select Category</mat-label>
-    <mat-select [(value)]="visitor.category">
-      <mat-option value="Daily">Daily</mat-option>
-      <mat-option value="Evening">Evening</mat-option>
-      <mat-option value="Daily Student">Daily Student</mat-option>
-      <mat-option value="Evening Student">Evening Student</mat-option>
-      <mat-option value="Children">Children</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <!-- <input [(ngModel)]="visitor.category" type="text" class="form-control" id="category" placeholder="Enter category"> -->
-</div>
-<div class="form-group" *ngIf="mode == 'Edit'">
-  <label for="section">Section</label><br>
-  <mat-form-field appearance="outline">
-    <mat-label>Select Section</mat-label>
-    <mat-select [(value)]="visitor.sectionId">
-      <mat-option [value]="section.sectionId" *ngFor="let section of sections">{{section.sectionName}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <!-- <input [(ngModel)]="visitor.sectionId" type="number" pattern="\d*" maxlength="6" class="form-control" id="category" placeholder="Enter section"> -->
-</div>
-<div mat-dialog-actions style="display: flex; justify-content: space-between;">
-  <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base"
-    (click)="onNoClick()">Cancel</button>
-  <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base"
-    (click)="onYesClick()">Save</button>
-</div>
-<br>
+<mat-dialog-content class="mat-typography">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input [(ngModel)]="visitor.firstName" type="text" class="form-control" id="firstName"
+      placeholder="Enter first name">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input [(ngModel)]="visitor.lastName" type="text" class="form-control" id="lastName" placeholder="Enter last name">
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Gender</mat-label>
+      <mat-select [(value)]="visitor.gender">
+        <mat-option value="Female">Female</mat-option>
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <input [(ngModel)]="visitor.gender" type="text" class="form-control" id="gender" placeholder="Enter gender"> -->
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input [(ngModel)]="visitor.age" type="number" pattern="\d*" maxlength="2" class="form-control" id="age"
+      placeholder="Enter age">
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Category</mat-label>
+      <mat-select [(value)]="visitor.category">
+        <mat-option value="Daily">Daily</mat-option>
+        <mat-option value="Evening">Evening</mat-option>
+        <mat-option value="Daily Student">Daily Student</mat-option>
+        <mat-option value="Evening Student">Evening Student</mat-option>
+        <mat-option value="Children">Children</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <input [(ngModel)]="visitor.category" type="text" class="form-control" id="category" placeholder="Enter category"> -->
+  </div>
+  <div class="form-group" *ngIf="mode == 'Edit'">
+    <label for="section">Section</label><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Section</mat-label>
+      <mat-select [(value)]="visitor.sectionId">
+        <mat-option [value]="section.sectionId" *ngFor="let section of sections">{{section.sectionName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <input [(ngModel)]="visitor.sectionId" type="number" pattern="\d*" maxlength="6" class="form-control" id="category" placeholder="Enter section"> -->
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+    <button mat-stroked-button (click)="onYesClick()">Save</button>
+</mat-dialog-actions>
