@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
   public barChartData2 = [
     {
       data: [280, 480, 400, 200, 550],
-      label: 'Sections',
+      label: 'Visitors',
       backgroundColor: ["rgba(191, 18, 93, 0.6)", "rgba(210, 65, 24, 0.7)", "rgba(132, 21, 210,0.7)", "rgba(202, 33, 120, 0.7)", "rgba(132, 21, 210, 0.7)"],
       barThickness: 25,
       maxBarThickness: 25,
