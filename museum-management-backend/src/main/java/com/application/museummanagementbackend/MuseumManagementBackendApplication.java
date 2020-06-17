@@ -41,6 +41,25 @@ public class MuseumManagementBackendApplication {
     SectionsRepository sectionsRepository;
 
     void startCustomerApp() {
+        jdbcTemplate.execute("drop table if exists user");
+        jdbcTemplate.execute("drop table if exists Visitors");
+        jdbcTemplate.execute("drop table if exists artifacts");
+        jdbcTemplate.execute("drop table if exists addsummary");
+        jdbcTemplate.execute("drop table if exists Employee");
+        jdbcTemplate.execute("DROP VIEW IF EXISTS employeewithsectionName");
+        jdbcTemplate.execute("drop table if exists Section");
+
+        // SQL for user table
+        jdbcTemplate.execute("CREATE TABLE user (" +
+                "        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, " +
+                "        firstName VARCHAR(30) NOT NULL, " +
+                "        lastName VARCHAR(30) NOT NULL " +
+                "        )");
+
+        jdbcTemplate.execute("INSERT INTO user (firstName, lastName) VALUES ('John', 'Doe')");
+
+
+        // SQL for Visitors_Global table(Data Warehouse)
         jdbcTemplate.execute("drop table if exists Visitors_Global");
         jdbcTemplate.execute("CREATE TABLE Visitors_Global (" +
                 "visitorId BIGINT NOT NULL PRIMARY KEY," +
@@ -55,10 +74,10 @@ public class MuseumManagementBackendApplication {
                 "sectionName VARCHAR(255)" +
                 ")"
         );
-        jdbcTemplate.execute("drop table if exists Visitors");
 
-		jdbcTemplate.execute("drop table if exists Sections");
-		jdbcTemplate.execute("CREATE TABLE Sections (" +
+
+        // SQL for section table
+		jdbcTemplate.execute("CREATE TABLE Section (" +
 				"sectionId BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
 				"sectionName VARCHAR(255)" +
 				")"
@@ -76,6 +95,8 @@ public class MuseumManagementBackendApplication {
             sectionsRepository.saveSection(x);
         });
 
+
+        // SQL for visitors table and stored procedures and triggers on visitors table
        	jdbcTemplate.execute("CREATE TABLE Visitors (" +
                 "visitorId BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
                 "firstName VARCHAR(255)," +
@@ -87,8 +108,8 @@ public class MuseumManagementBackendApplication {
                 "sectionId BIGINT, " +
                 "CONSTRAINT fk_section" +
                 "  FOREIGN KEY (sectionId)" +
-                "  REFERENCES sections(sectionId)"+
-			   	//"FOREIGN KEY (sectionId) REFERENCES sections(sectionId)"+
+                "  REFERENCES section(sectionId)"+
+			   	//"FOREIGN KEY (sectionId) REFERENCES section(sectionId)"+
                 ")"
 	   );
 
@@ -100,7 +121,7 @@ public class MuseumManagementBackendApplication {
                 "Declare secName varchar(255);" +
                 "Declare entDate DATETIME;" +
                 "SELECT FROM_UNIXTIME(new.entryDate/1000) into entDate;" +
-                "SELECT sectionName INTO secName FROM Sections WHERE sectionId=new.sectionId;" +
+                "SELECT sectionName INTO secName FROM Section WHERE sectionId=new.sectionId;" +
                 "INSERT INTO Visitors_Global  VALUES(new.visitorId, new.firstName, new.lastName, new.gender, new.age, new.category, entDate, 0, new.sectionId, secName);" +
                 "END"
         );
@@ -136,13 +157,65 @@ public class MuseumManagementBackendApplication {
                 "WHEN in_type = 2 THEN " +
                 "SELECT COUNT(*) INTO out_count FROM Visitors_Global; " +
                 "WHEN in_type = 3 THEN " +
-                "SELECT COUNT(*) INTO out_count FROM Sections; " +
+                "SELECT COUNT(*) INTO out_count FROM Artifacts; " +
+                "WHEN in_type = 4 THEN " +
+                "SELECT COUNT(*) INTO out_count FROM Section; " +
                 "ELSE " +
                 "SELECT COUNT(*) INTO out_count FROM Visitors_Global; " +
                 "END CASE; " +
                 "END";
         jdbcTemplate.execute("DROP PROCEDURE IF EXISTS getCounts");
         jdbcTemplate.execute(procedureSql);
+
+
+        // SQL for Employee table
+        jdbcTemplate.execute("CREATE TABLE Employee ( " +
+                "empId int  NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                "lastName varchar(255) NOT NULL, " +
+                "firstName varchar(255), " +
+                "emailId varchar(255), " +
+                "roleName  varchar(255), " +
+                "sectionId BIGINT " +
+                ")"
+        );
+        jdbcTemplate.execute("ALTER TABLE Employee ADD CONSTRAINT FK_EmployeeSection FOREIGN KEY (sectionId) REFERENCES section(sectionId)");
+        jdbcTemplate.execute("insert into Employee values(null,'John','Doe','john.doe@gmail.com','Graphic Designer',2)");
+        jdbcTemplate.execute("insert into Employee values(null,'Jane','Doe','jane.doe@gmail.com','Manager',2)");
+        jdbcTemplate.execute("CREATE VIEW employeewithsectionName AS SELECT e.empId, e.lastName,e.firstName,e.emailId,e.roleName,s.sectionName FROM employee e,section s WHERE s.sectionId=e.sectionId");
+
+
+        // SQL for artifacts table
+        jdbcTemplate.execute("CREATE TABLE artifacts ( " +
+                "artifactsID bigint NOT NULL AUTO_INCREMENT, " +
+                "artifactName varchar(255) NOT NULL, " +
+                "dateArrived bigint NOT NULL, " +
+                "artifactType varchar(255) NOT NULL, " +
+                "sectionid BIGINT NOT NULL, " +
+                "empid int NOT NULL, " +
+                "amount int NOT NULL, " +
+                "acquiredFrom varchar(20) NOT NULL, " +
+                "quantity int NOT NULL, " +
+                "PRIMARY KEY (artifactsID), " +
+                "KEY empId_idx (empid), " +
+                "KEY sectionid_idx (sectionid), " +
+                "CONSTRAINT empId FOREIGN KEY (empid) REFERENCES employee (empId), " +
+                "CONSTRAINT sectionid FOREIGN KEY (sectionid) REFERENCES section (sectionId) " +
+                ")"
+        );
+        jdbcTemplate.execute("INSERT INTO `artifacts` VALUES (1,'RRVPainting',1592303236852,'Painting',1,1,40000,'ABC',0)");
+        jdbcTemplate.execute("INSERT INTO `artifacts` VALUES (2,'RRVPainting',1592303236852,'Painting1',2,1,40000,'ABC',0)");
+
+        jdbcTemplate.execute("CREATE TABLE addsummary ( " +
+                "sectionid bigint NOT NULL, " +
+                "sectionName varchar(45) NOT NULL, " +
+                "artifactCount int NOT NULL, " +
+                "TotalAmount bigint NOT NULL, " +
+                "summaryid int NOT NULL AUTO_INCREMENT, " +
+                "PRIMARY KEY (summaryid) " +
+                ")"
+        );
+
+
 
     }
 

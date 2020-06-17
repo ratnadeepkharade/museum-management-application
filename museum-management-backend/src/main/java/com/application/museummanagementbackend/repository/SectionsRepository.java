@@ -15,7 +15,7 @@ public class SectionsRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Section> getAllSections() {
-        String sql = "SELECT * FROM sections";
+        String sql = "SELECT * FROM section";
 
         List<Section> sections = (List<Section>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(Section.class));
 
@@ -24,17 +24,17 @@ public class SectionsRepository {
 
     public int saveSection(Section section) {
         return jdbcTemplate.update(
-                "insert into sections (sectionName) values(?)",
+                "insert into section (sectionName) values(?)",
                 section.getSectionName());
     }
 
     public int updateSection(Section section) {
-        String sqlString = "update sections set sectionName= ? where sectionId = ?";
+        String sqlString = "update section set sectionName= ? where sectionId = ?";
         return jdbcTemplate.update(sqlString, section.getSectionName(), section.getSectionId());
     }
 
     public int deleteSection(int sectionId) {
-        String sql = "delete  FROM sections where sectionId=?";
+        String sql = "delete  FROM section where sectionId=?";
         return jdbcTemplate.update(sql,sectionId);
     }
 }

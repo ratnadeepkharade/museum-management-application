@@ -13,9 +13,9 @@ public class ArtifactRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Artifact> getAllArtifact() {
-        String sql ="SELECT artifacts.artifactsID,artifacts.artifactsID,artifacts.artifactName,artifacts.artifactType,artifacts.dateArrived,artifacts.sectionid,artifacts.empid,artifacts.amount,artifacts.acquiredFrom,artifacts.quantity,sections.sectionName,employee.firstName " +
+        String sql ="SELECT artifacts.artifactsID,artifacts.artifactsID,artifacts.artifactName,artifacts.artifactType,artifacts.dateArrived,artifacts.sectionid,artifacts.empid,artifacts.amount,artifacts.acquiredFrom,artifacts.quantity,section.sectionName,employee.firstName " +
                 "FROM artifacts " +
-                "INNER JOIN sections ON sections.sectionID=artifacts.sectionid " +
+                "INNER JOIN section ON section.sectionID=artifacts.sectionid " +
                 "INNER JOIN employee ON employee.empId=artifacts.empid";
 
 

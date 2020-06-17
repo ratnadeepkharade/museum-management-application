@@ -16,9 +16,9 @@ public class VisitorsRepository {
 
     public List<Visitor> getAllVisitors() {
         //String sql = "SELECT * FROM visitors";
-        String sql ="SELECT visitors.visitorID,visitors.firstName,visitors.lastName,visitors.gender,visitors.age,visitors.category,visitors.entryDate,visitors.sectionId,sections.sectionName " +
+        String sql ="SELECT visitors.visitorID,visitors.firstName,visitors.lastName,visitors.gender,visitors.age,visitors.category,visitors.entryDate,visitors.sectionId,section.sectionName " +
                 "FROM visitors " +
-                "INNER JOIN sections ON sections.sectionID=visitors.sectionID";
+                "INNER JOIN section ON section.sectionID=visitors.sectionID";
 
         List<Visitor> visitors = (List<Visitor>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(Visitor.class));
 
