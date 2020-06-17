@@ -3,9 +3,9 @@
         <h3> Dashboard </h3>
     </div>
 </div>
-
+<br>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row count-cards">
         <div class="col">
             <mat-card>
                 <h1>{{currentCount}}</h1>
@@ -15,8 +15,8 @@
         <div class="col">
             <mat-card style="background: rgb(209,61,20);
             background: linear-gradient(90deg, rgba(209,61,20,1) 0%, rgba(218,87,47,1) 100%);">
-            <h1>{{totalCount}}</h1>
-            <h3>Total Visitors Today</h3>
+                <h1>{{totalCount}}</h1>
+                <h3>Total Visitors Today</h3>
             </mat-card>
         </div>
         <div class="col">
@@ -29,10 +29,30 @@
         <div class="col">
             <mat-card style="background: rgb(187,34,115);
             background: linear-gradient(90deg, rgba(187,34,115,1) 0%, rgba(212,31,123,1) 100%);">
-            <h1>{{sectionCount}}</h1>
-            <h3>Number of Sections</h3>
-        </mat-card>
+                <h1>{{sectionCount}}</h1>
+                <h3>Number of Sections</h3>
+            </mat-card>
         </div>
-        
-      </div>
+    </div>
+    <br>
+    <div class="row graph-holder">
+        <div class="col">
+            <mat-card>
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                    [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+                <br>
+                <h3 style="text-align: center;">Monthly Visitors</h3>
+            </mat-card>
+        </div>
+        <div class="col">
+            <mat-card>
+                <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabels2" [options]="barChartOptions2"
+                    [legend]="barChartLegend2" [chartType]="barChartType2">
+                </canvas>
+                <br>
+                <h3 style="text-align: center;">Most Popular Sections</h3>
+            </mat-card>
+        </div>
+    </div>
 </div>

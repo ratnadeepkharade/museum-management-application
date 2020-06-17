@@ -1,6 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-
+import { ChartsModule } from 'ng2-charts';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 import { DemoMaterialModule } from './material-module';
@@ -19,13 +19,25 @@ import { AddArtifactComponent } from './artifacts/add-artifact/add-artifact.comp
 
 
 @NgModule({
-  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent, AddVisitorComponent, AddEmployeeComponent, AddArtifactComponent],
+  declarations: [
+    MainComponent, 
+    DashboardComponent, 
+    VisitorsComponent, 
+    ArtifactsComponent, 
+    UsersComponent, 
+    EmployeesComponent, 
+    AddVisitorComponent, 
+    AddEmployeeComponent, 
+    AddArtifactComponent
+    
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
     DemoMaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [
     RESTService,

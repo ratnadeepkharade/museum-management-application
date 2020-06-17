@@ -16,7 +16,7 @@
 }
 
 
-mat-card{
+.count-cards mat-card{
     background: rgb(186,15,87);
     background: linear-gradient(90deg, rgba(186,15,87,1) 0%, rgba(210,29,116,1) 100%);
     color: white;
@@ -34,5 +34,14 @@ mat-card{
         position: absolute;
         bottom: 12px;
         font-size: 16px;
+    }
+}
+
+.graph-holder mat-card{
+    color: black;
+    h3 {
+        font-size: 16px;
+        font-weight: 500;
+        color: #444;
     }
 }

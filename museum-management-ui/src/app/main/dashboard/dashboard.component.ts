@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { RESTService } from 'src/app/services/rest.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -10,19 +9,62 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class DashboardComponent implements OnInit {
 
-  currentCount:any=''
-  totalCount:any=''
-  sectionCount:any=''
-  artifactCount:any=''
+  currentCount: any = ''
+  totalCount: any = ''
+  sectionCount: any = ''
+  artifactCount: any = ''
 
   constructor(
     private restService: RESTService,
     private loaderService: LoaderService) {
-      
   }
 
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+  public barChartLabels = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  public barChartType = 'line';
+  public barChartLegend = true;
+  public barChartData = [
+    { data: [280, 480, 400, 200, 550, 270, 500, 700, 500, 300, 550, 550], label: 'Monthly Visitors' }
+  ];
+
+  public barChartOptions2 = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+
+      }]
+    }
+  };
+  public barChartLabels2 = ['Gallery', 'History', 'Paintings', 'Sculptures', 'Modern Art'];
+  public barChartType2 = 'bar';
+  public barChartLegend2 = true;
+  public barChartData2 = [
+    {
+      data: [280, 480, 400, 200, 550],
+      label: 'Sections',
+      backgroundColor: ["rgba(191, 18, 93, 0.6)", "rgba(210, 65, 24, 0.7)", "rgba(132, 21, 210,0.7)", "rgba(202, 33, 120, 0.7)", "rgba(132, 21, 210, 0.7)"],
+      barThickness: 25,
+      maxBarThickness: 25,
+      minBarLength: 10
+    }
+  ];
+
   ngOnInit() {
-    this.getCounts();;
+    this.getCounts();
   }
   getCounts() {
     this.getCurrentVisitorCount(1);
@@ -32,19 +74,19 @@ export class DashboardComponent implements OnInit {
   }
   getCurrentVisitorCount(type) {
     //this.loaderService.show();
-    this.restService.getRequest('dashboard/count/'+ type).subscribe((data) => {
+    this.restService.getRequest('dashboard/count/' + type).subscribe((data) => {
       console.log(data);
-      if(type === 1){
-        this.currentCount= data;
+      if (type === 1) {
+        this.currentCount = data;
       }
-      if(type === 2){
-        this.totalCount= data;
+      if (type === 2) {
+        this.totalCount = data;
       }
-      if(type === 3){
-        this.artifactCount= data;
+      if (type === 3) {
+        this.artifactCount = data;
       }
-      if(type === 4){
-        this.sectionCount= data;
+      if (type === 4) {
+        this.sectionCount = data;
       }
       //this.loaderService.hide();
     })
