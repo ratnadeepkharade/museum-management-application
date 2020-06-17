@@ -135,6 +135,19 @@ public class MuseumManagementBackendApplication {
                 "END"
         );
 
+        jdbcTemplate.execute("DROP TRIGGER IF EXISTS update_visitor_section_in_global");
+        jdbcTemplate.execute("CREATE TRIGGER update_visitor_section_in_global " +
+                "AFTER UPDATE ON Visitors " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "Declare secName varchar(255);" +
+                "IF OLD.sectionId <> new.sectionId THEN " +
+                "SELECT sectionName INTO secName FROM Section WHERE sectionId=new.sectionId;" +
+                "UPDATE Visitors_Global SET sectionId=new.sectionId, sectionName=secName WHERE visitorId=OLD.visitorId;" +
+                "END IF;" +
+                "END"
+        );
+
         List<Visitor> visitorslist = Arrays.asList(
                 new Visitor("Brad", "Pitt", "Male", 60, "Daily", 1),
                 new Visitor("Albert", "Einstein", "Male", 60, "Daily", 1),
