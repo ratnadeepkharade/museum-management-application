@@ -17,19 +17,19 @@
             <h1>Login to your account</h1>
             <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control input" id="exampleInputEmail1" placeholder="Enter username"
+                <input [(ngModel)]="username" type="text" class="form-control input" id="exampleInputEmail1" placeholder="Enter username"
                     aria-describedby="emailHelp">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" placeholder="Enter password" class="form-control input"
+                <input [(ngModel)]="password" type="password" placeholder="Enter password" class="form-control input"
                     id="exampleInputPassword1">
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
-            <button routerLink="/main" class="btn btn-primary">Submit</button>
+            <button (click)="login()" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </div>

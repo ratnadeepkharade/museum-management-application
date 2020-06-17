@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,32 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
   private REST_API_SERVER = "http://localhost:8080/api/login/user";
 
-  constructor(private http:HttpClient) { }
+  username = "";
+  password = "";
+
+  constructor(private http: HttpClient, private router: Router) { }
 
 
   ngOnInit(): void {
-    this.sendGetRequest().subscribe((data: any[])=>{
-      console.log(data);
-      //this.products = data;
-    })  
-    //console.log( this.http.get(this.REST_API_SERVER));
-}
+   
+  }
 
-public sendGetRequest(){
-  return this.http.get(this.REST_API_SERVER);
-}
+  public sendGetRequest() {
+    return this.http.get(this.REST_API_SERVER);
+  }
+
+  login() {
+    console.log('in login');
+    if ( !this.username || !this.password) {
+
+    } else {
+      this.sendGetRequest().subscribe((data: any[]) => {
+        console.log(data);
+        //this.products = data;
+        this.router.navigate(['/main']);
+      });
+    }
+    
+  }
 
 }
