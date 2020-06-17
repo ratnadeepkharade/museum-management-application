@@ -209,11 +209,10 @@ public class MuseumManagementBackendApplication {
                 "sectionid bigint NOT NULL, " +
                 "sectionName varchar(45) NOT NULL, " +
                 "artifactCount int NOT NULL, " +
-                "TotalAmount bigint NOT NULL, " +
-
+                "TotalAmount bigint NOT NULL " +
                 ")"
         );
-        jdbcTemplate.execute(	"CREATE TRIGGER artifacts_AFTER_INSERT"+
+        /*jdbcTemplate.execute(	"CREATE TRIGGER artifacts_AFTER_INSERT"+
                                 "AFTER INSERT ON artifacts"+
                                 "FOR EACH ROW"+
                                 "BEGIN"+
@@ -230,7 +229,7 @@ public class MuseumManagementBackendApplication {
                                    "update addsummary set TotalAmount = TotalAmount-OLD.amount WHERE addsummary.sectionid = OLD.sectionid ;"+
                                   "END"
 
-        );
+        );*/
 
 
 

@@ -1,5 +1,6 @@
 package com.application.museummanagementbackend.repository;
 
+import com.application.museummanagementbackend.model.MonthlyCount;
 import com.application.museummanagementbackend.model.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -46,5 +47,16 @@ public class DashboardRepository {
         } else {
             return (Integer) out.get("out_count");
         }
+    }
+
+    public List<MonthlyCount> getMonthlyCount() {
+        String sql ="SELECT Month(entryDate) as monthId, Count(*) as count " +
+                "    FROM Visitors_Global " +
+                "    WHERE entryDate >= CURDATE() - INTERVAL 1 YEAR " +
+                "    GROUP BY Month(entryDate)";
+
+        List<MonthlyCount> monthlyCounts = (List<MonthlyCount>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(MonthlyCount.class));
+
+        return monthlyCounts;
     }
 }

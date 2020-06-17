@@ -1,5 +1,6 @@
 package com.application.museummanagementbackend.controller;
 
+import com.application.museummanagementbackend.model.MonthlyCount;
 import com.application.museummanagementbackend.model.Visitor;
 import com.application.museummanagementbackend.repository.DashboardRepository;
 import com.application.museummanagementbackend.repository.VisitorsRepository;
@@ -32,5 +33,10 @@ public class DashboardController {
     @GetMapping(path = "/count/{type}")
     public int getCount(@PathVariable int type) {
         return  dashboardRepository.getCount(type);
+    }
+
+    @GetMapping(path = "/monthlyCount")
+    public List<MonthlyCount> getMonthlyCount() {
+        return  dashboardRepository.getMonthlyCount();
     }
 }
