@@ -71,7 +71,8 @@ export class DashboardComponent implements OnInit {
     this.getCurrentVisitorCount(2);
     this.getCurrentVisitorCount(3);
     this.getCurrentVisitorCount(4);
-    this.getMonthlyCountRestCall()
+    this.getMonthlyCountRestCall();
+    this.getTopSectionsRestCall();
   }
   getCurrentVisitorCount(type) {
     //this.loaderService.show();
@@ -94,7 +95,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getMonthlyCountRestCall(){
-    
     this.restService.getRequest('dashboard/monthlyCount').subscribe((data:any) => {
       console.log(data);
       this.barChartLabels = [];
@@ -102,6 +102,19 @@ export class DashboardComponent implements OnInit {
       for (let i = 0; i< data.length; i++) {
         this.barChartLabels.push(data[i].monthId);
         this.barChartData[0].data.push(data[i].count)
+      }
+      //this.loaderService.hide();
+    })
+  }
+
+  getTopSectionsRestCall(){
+    this.restService.getRequest('dashboard/topSections').subscribe((data:any) => {
+      console.log(data);
+      this.barChartLabels2 = [];
+      this.barChartData2[0].data = []
+      for (let i = 0; i< data.length; i++) {
+        this.barChartLabels2.push(data[i].sectionName);
+        this.barChartData2[0].data.push(data[i].count)
       }
       //this.loaderService.hide();
     })
