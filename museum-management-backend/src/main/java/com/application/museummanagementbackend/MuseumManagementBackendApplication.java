@@ -210,9 +210,26 @@ public class MuseumManagementBackendApplication {
                 "sectionName varchar(45) NOT NULL, " +
                 "artifactCount int NOT NULL, " +
                 "TotalAmount bigint NOT NULL, " +
-                "summaryid int NOT NULL AUTO_INCREMENT, " +
-                "PRIMARY KEY (summaryid) " +
+
                 ")"
+        );
+        jdbcTemplate.execute(	"CREATE TRIGGER artifacts_AFTER_INSERT"+
+                                "AFTER INSERT ON artifacts"+
+                                "FOR EACH ROW"+
+                                "BEGIN"+
+                                "update addsummary set artifactCount = artifactCount+NEW.quantity WHERE addsummary.sectionid = NEW.sectionid ;"+
+                                "update addsummary set TotalAmount = TotalAmount+NEW.amount WHERE addsummary.sectionid = NEW.sectionid ;"+
+                                 "END"
+
+        );
+        jdbcTemplate.execute("CREATE TRIGGER artifacts_AFTER_DELETE"+
+                                 " AFTER DELETE ON artifacts"+
+                                  "FOR EACH ROW"+
+                                    "BEGIN"+
+                                   "update addsummary set artifactCount = artifactCount-OLD.quantity WHERE addsummary.sectionid = OLD.sectionid ;"+
+                                   "update addsummary set TotalAmount = TotalAmount-OLD.amount WHERE addsummary.sectionid = OLD.sectionid ;"+
+                                  "END"
+
         );
 
 
