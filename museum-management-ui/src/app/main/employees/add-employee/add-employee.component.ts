@@ -16,8 +16,9 @@ export interface DialogData {
 export class AddEmployeeComponent implements OnInit {
 
   mode = "Add";
+  flag = '0';
  
-
+  sections = [];
   employee = {
     firstName: '', lastName:'', emailId: '', roleName:'', sectionName:'', empId:''
   };
@@ -36,7 +37,9 @@ export class AddEmployeeComponent implements OnInit {
     console.log(this.data);
     if (this.data) {
       this.employee = this.data;
+      
     }
+    this.getSectionsRESTCall();
   }
 
   onNoClick(): void {
@@ -80,5 +83,15 @@ export class AddEmployeeComponent implements OnInit {
       this.dialogRef.close("save");
     });
   }
-
+  getSectionsRESTCall(){
+    this.restService.getRequest('sections/sectionList').subscribe((data: any[]) => {
+      console.log(data);
+      this.sections = data;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+  enableTextBox(){
+    this.flag='1';
+  }
 }

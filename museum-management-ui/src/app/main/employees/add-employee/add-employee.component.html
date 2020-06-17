@@ -12,9 +12,28 @@
     <input [(ngModel)]="employee.roleName" type="text" class="form-control" id="roleName" placeholder="Enter Role Name">
   </div>
   
-  <div class="form-group">
+<!--   <div class="form-group">
     <label for="sectionName">Section Name</label>
     <input [(ngModel)]="employee.sectionName" type="text" class="form-control" id="sectionName" placeholder="Enter Section Name">
+  </div> -->
+  <div class="form-group">
+    <label for="sectionName">Section Name</label><br>
+    <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="enableTextBox()">Add New section</button>
+    <br>
+    <br>
+       <div *ngIf="flag=='0'">
+        <mat-form-field appearance="outline"> 
+      <mat-label>Select Section</mat-label>
+      <mat-select [(value)]="employee.sectionName" >
+        <mat-option [value]="section.sectionName" *ngFor="let section of sections">{{section.sectionName}}</mat-option>
+      </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="flag=='1'">
+      <input [(ngModel)]="employee.sectionName" type="text" class="form-control" id="sectionName" placeholder="Enter Section Name">
+    </div> 
+    
+    
   </div>
   <div class="form-group">
     <label for="emailId">email Id</label>
