@@ -71,6 +71,7 @@ export class DashboardComponent implements OnInit {
     this.getCurrentVisitorCount(2);
     this.getCurrentVisitorCount(3);
     this.getCurrentVisitorCount(4);
+    this.getMonthlyCountRestCall()
   }
   getCurrentVisitorCount(type) {
     //this.loaderService.show();
@@ -87,6 +88,20 @@ export class DashboardComponent implements OnInit {
       }
       if (type === 4) {
         this.sectionCount = data;
+      }
+      //this.loaderService.hide();
+    })
+  }
+
+  getMonthlyCountRestCall(){
+    
+    this.restService.getRequest('dashboard/monthlyCount').subscribe((data:any) => {
+      console.log(data);
+      this.barChartLabels = [];
+      this.barChartData[0].data = []
+      for (let i = 0; i< data.length; i++) {
+        this.barChartLabels.push(data[i].monthId);
+        this.barChartData[0].data.push(data[i].count)
       }
       //this.loaderService.hide();
     })
