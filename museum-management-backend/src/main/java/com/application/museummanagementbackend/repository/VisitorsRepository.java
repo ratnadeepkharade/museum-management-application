@@ -40,4 +40,9 @@ public class VisitorsRepository {
         String sql = "delete  FROM visitors where visitorId=?";
         return jdbcTemplate.update(sql,visitorId);
     }
+
+    public int getVisitorsCount(){
+        String sql = "SELECT COUNT(*) FROM count_demos";
+        return this.jdbcTemplate.queryForObject(sql, Integer.class);
+    }
 }
