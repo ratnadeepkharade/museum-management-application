@@ -22,6 +22,7 @@ export class AddArtifactComponent implements OnInit {
     artifactid: '',artifactName: '', artifactType: '',sectionid: '',empid: '', amount:'', acquiredFrom: '',quantity: '',width:'',height:'',artist:'',weight:'',artistsculpt:''
   };
   artifactName = '';
+  sections = [];
   constructor(public dialogRef: MatDialogRef<AddArtifactComponent>,
     private restService: RESTService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,7 +37,10 @@ export class AddArtifactComponent implements OnInit {
     console.log(this.data);
     if (this.data) {
       this.artifact = this.data;
+     
+      
     }
+    this.getSectionsRESTCall();
   }
 
   onNoClick(): void {
@@ -53,7 +57,14 @@ export class AddArtifactComponent implements OnInit {
       this.dialogRef.close("save");
     }
   }
-
+  getSectionsRESTCall(){
+    this.restService.getRequest('sections/sectionList').subscribe((data: any[]) => {
+      console.log(data);
+      this.sections = data;
+    }, (err) => {
+      console.log(err);
+    });
+  }
   addArtifactRESTCall() {
     let obj = {artifactName: this.artifact.artifactName, artifactType: this.artifact.artifactType,sectionid: this.artifact.sectionid,empid: this.artifact.empid, amount:this.artifact.amount, acquiredFrom: this.artifact.acquiredFrom,quantity: this.artifact.quantity,height: this.artifact.height,width: this.artifact.width,artist: this.artifact.artist,weight: this.artifact.weight,artistsculpt: this.artifact.artistsculpt};
     this.loaderService.show();

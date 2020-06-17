@@ -134,9 +134,9 @@ export class ArtifactsComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   template: `
-  <h1 mat-dialog-title>Delete Employee</h1>
+  <h1 mat-dialog-title>Delete Artifact</h1>
   <div mat-dialog-content>
-    <p>Are you sure you want to delete employee?</p>
+    <p>Are you sure you want to delete artifact?</p>
   </div>
   <div mat-dialog-actions>
   <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="onNoClick()">Cancel</button>

@@ -54,8 +54,14 @@
       <input [(ngModel)]="artifact.acquiredFrom" type="text" class="form-control" id="acquiredFrom" placeholder="Enter Acquired From">
     </div>
     <div class="form-group">
-      <label for="sectionid">Section Id</label>
-      <input [(ngModel)]="artifact.sectionid" type="text" class="form-control" id="sectionid" placeholder="Enter Section id">
+      <label for="section">Section</label><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Select Section</mat-label>
+        <mat-select [(value)]="artifact.sectionid">
+          <mat-option [value]="section.sectionId" *ngFor="let section of sections">{{section.sectionName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <input [(ngModel)]="visitor.sectionId" type="number" pattern="\d*" maxlength="6" class="form-control" id="category" placeholder="Enter section"> -->
     </div>
       <div class="form-group">
         <label for="empid">Maintained By </label>
