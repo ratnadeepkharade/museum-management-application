@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
@@ -15,10 +15,11 @@ import { FormsModule } from '@angular/forms';
 import { AddVisitorComponent } from './visitors/add-visitor/add-visitor.component';
 import { LoaderService } from '../services/loader.service';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
+import { AddArtifactComponent } from './artifacts/add-artifact/add-artifact.component';
 
 
 @NgModule({
-  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent, AddVisitorComponent, AddEmployeeComponent],
+  declarations: [MainComponent, DashboardComponent, VisitorsComponent, ArtifactsComponent, UsersComponent, EmployeesComponent, AddVisitorComponent, AddEmployeeComponent, AddArtifactComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -28,7 +29,8 @@ import { AddEmployeeComponent } from './employees/add-employee/add-employee.comp
   ],
   providers: [
     RESTService,
-    LoaderService
+    LoaderService,
+    DatePipe
   ]
 })
 export class MainModule { }
