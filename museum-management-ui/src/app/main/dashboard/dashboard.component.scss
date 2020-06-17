@@ -1,0 +1,38 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    line-height: 45px;
+
+    div {
+        display: inline-block;
+        font-size: 14px;
+    }
+    h3 {
+        font-size: 20px;
+        line-height: 45px;
+        margin-left: 14px;
+    }
+}
+
+
+mat-card{
+    background: rgb(186,15,87);
+    background: linear-gradient(90deg, rgba(186,15,87,1) 0%, rgba(210,29,116,1) 100%);
+    color: white;
+    height: 150px;
+    padding-left: 20px;
+    border-radius: 8px;
+    //text-align: center;
+    h1{
+        height: inherit;
+        line-height: 100px;
+        font-size: 54px;
+        font-weight: 300;
+    }
+    h3{
+        position: absolute;
+        bottom: 12px;
+        font-size: 16px;
+    }
+}
