@@ -128,7 +128,7 @@ public class MuseumManagementBackendApplication {
 
         jdbcTemplate.execute("DROP TRIGGER IF EXISTS update_visitor_in_global");
         jdbcTemplate.execute("CREATE TRIGGER update_visitor_in_global " +
-                "BEFORE DELETE ON Visitors " +
+                "AFTER DELETE ON Visitors " +
                 "FOR EACH ROW " +
                 "BEGIN " +
                 "UPDATE Visitors_Global SET exitDate=NOW() WHERE visitorId=OLD.visitorId;" +
