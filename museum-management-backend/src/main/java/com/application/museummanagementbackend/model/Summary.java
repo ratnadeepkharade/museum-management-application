@@ -15,7 +15,7 @@ public class Summary {
         this.TotalAmount=TotalAmount;
     }
 
-   
+
 
     public int getSectionid() {
         return sectionid;
