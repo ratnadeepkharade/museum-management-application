@@ -14,11 +14,12 @@ public class Artifact {
     private String acquiredFrom;
     private String sectionName;
     private String firstName;
-
+    private int TotalAmount;
+    private int artifactCount;
     public Artifact() {
     }
 
-    public Artifact(int artifactsID, String artifactName, long dateArrived, String artifactType,int sectionid,int empid,int amount,String acquiredFrom,int quantity) {
+    public Artifact(int artifactsID, String artifactName, long dateArrived, String artifactType,int sectionid,int empid,int amount,String acquiredFrom,int quantity,int TotalAmount, int artifactCount) {
         this.artifactsID = artifactsID;
         this.artifactName = artifactName;
         this.dateArrived = dateArrived;
@@ -28,7 +29,8 @@ public class Artifact {
         this.amount = amount;
         this.acquiredFrom = acquiredFrom;
         this.quantity = quantity;
-
+        this.TotalAmount=TotalAmount;
+        this.artifactCount=artifactCount;
 
     }
 
@@ -38,6 +40,20 @@ public class Artifact {
 
     public void setartifactsID(int artifactsID) {
         this.artifactsID = artifactsID;
+    }
+    public int getTotalAmount() {
+        return TotalAmount;
+    }
+
+    public void setTotalAmount(int TotalAmount) {
+        this.TotalAmount = TotalAmount;
+    }
+    public int getartifactCount() {
+        return artifactCount;
+    }
+
+    public void setartifactCount(int artifactCount) {
+        this.artifactCount = artifactCount;
     }
 
     public String getartifactName() {

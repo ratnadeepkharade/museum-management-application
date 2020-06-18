@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoaderService } from 'src/app/services/loader.service';
 import { AddArtifactComponent } from './add-artifact/add-artifact.component';
+import { SectionSummaryComponent } from './section-summary/section-summary.component';
 
 export interface ArtifactModel {
   artifactsID: number;
@@ -78,6 +79,18 @@ export class ArtifactsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  opensectionwiseDialog() {
+    const dialogRef = this.dialog.open(SectionSummaryComponent, {
+      width: '520px',
+      data: ''
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "save") {
+
+      }
+    });
   }
 
   openAddDialog() {
