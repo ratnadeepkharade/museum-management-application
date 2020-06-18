@@ -223,7 +223,7 @@ public class MuseumManagementBackendApplication {
 
         // SQL for artifacts table
         jdbcTemplate.execute("CREATE TABLE artifacts ( " +
-                "artifactsID bigint NOT NULL AUTO_INCREMENT, " +
+                "artifactsID int NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 "artifactName varchar(255) NOT NULL, " +
                 "dateArrived bigint NOT NULL, " +
                 "artifactType varchar(255) NOT NULL, " +
@@ -232,15 +232,16 @@ public class MuseumManagementBackendApplication {
                 "amount int NOT NULL, " +
                 "acquiredFrom varchar(20) NOT NULL, " +
                 "quantity int NOT NULL, " +
-                "PRIMARY KEY (artifactsID), " +
-                "KEY empId_idx (empid), " +
-                "KEY sectionid_idx (sectionid), " +
-                "CONSTRAINT empId FOREIGN KEY (empid) REFERENCES employee (empId), " +
-                "CONSTRAINT sectionid FOREIGN KEY (sectionid) REFERENCES section (sectionId) " +
+                "CONSTRAINT fk_artifactsection" +
+                "  FOREIGN KEY (sectionid)" +
+                "  REFERENCES section(sectionId)"+
+
                 ")"
         );
-        jdbcTemplate.execute("INSERT INTO `artifacts` VALUES (1,'RRVPainting',1592303236852,'Painting',1,1,40000,'ABC',0)");
-        jdbcTemplate.execute("INSERT INTO `artifacts` VALUES (2,'RRVPainting',1592303236852,'Painting1',2,1,40000,'ABC',0)");
+
+        jdbcTemplate.execute("ALTER TABLE artifacts ADD CONSTRAINT FK_artifactsSection_emp FOREIGN KEY (empid) REFERENCES employee(empId)");
+        jdbcTemplate.execute("INSERT INTO `artifacts` VALUES (1,'RRVPainting',1592303236852,'Painting',1,1,40000,'ABC',1)");
+        jdbcTemplate.execute("INSERT INTO `artifacts` VALUES (2,'RRVPainting',1592303236852,'Painting1',2,1,40000,'ABC',1)");
 
         jdbcTemplate.execute("CREATE TABLE addsummary ( " +
                 "sectionid bigint NOT NULL, " +
@@ -249,24 +250,37 @@ public class MuseumManagementBackendApplication {
                 "TotalAmount bigint NOT NULL " +
                 ")"
         );
-        /*jdbcTemplate.execute(	"CREATE TRIGGER artifacts_AFTER_INSERT"+
-                                "AFTER INSERT ON artifacts"+
-                                "FOR EACH ROW"+
-                                "BEGIN"+
-                                "update addsummary set artifactCount = artifactCount+NEW.quantity WHERE addsummary.sectionid = NEW.sectionid ;"+
-                                "update addsummary set TotalAmount = TotalAmount+NEW.amount WHERE addsummary.sectionid = NEW.sectionid ;"+
-                                 "END"
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (1,'Main',1,40000)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (2,'Art Gallery',1,40000)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (3,'Natural Histroy',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (4,'Architecture',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (5,'Archaeology',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (6,'Crafts',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (7,'Rare Prints',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (8,'Paintings',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (9,'Sculptures',0,0)" );
+        jdbcTemplate.execute("INSERT INTO `addsummary` VALUES (10,'Old Coins',0,0)" );
+       jdbcTemplate.execute("DROP TRIGGER IF EXISTS artifacts_AFTER_INSERT");
+        jdbcTemplate.execute("CREATE TRIGGER artifacts_AFTER_INSERT " +
+                "AFTER INSERT ON artifacts " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "UPDATE addsummary SET artifactCount = artifactCount+NEW.quantity WHERE addsummary.sectionid = NEW.sectionid; "+
+                "UPDATE addsummary SET TotalAmount = TotalAmount+NEW.amount WHERE addsummary.sectionid = NEW.sectionid; "+
 
+                "END"
         );
-        jdbcTemplate.execute("CREATE TRIGGER artifacts_AFTER_DELETE"+
-                                 " AFTER DELETE ON artifacts"+
-                                  "FOR EACH ROW"+
-                                    "BEGIN"+
-                                   "update addsummary set artifactCount = artifactCount-OLD.quantity WHERE addsummary.sectionid = OLD.sectionid ;"+
-                                   "update addsummary set TotalAmount = TotalAmount-OLD.amount WHERE addsummary.sectionid = OLD.sectionid ;"+
+
+        jdbcTemplate.execute("DROP TRIGGER IF EXISTS artifacts_AFTER_DELETE");
+        jdbcTemplate.execute("CREATE TRIGGER artifacts_AFTER_DELETE "+
+                                 " AFTER DELETE ON artifacts "+
+                                  "FOR EACH ROW "+
+                                    "BEGIN "+
+                                   "UPDATE addsummary SET artifactCount = artifactCount-OLD.quantity WHERE addsummary.sectionid = OLD.sectionid; "+
+                                   "UPDATE addsummary SET TotalAmount = TotalAmount-OLD.amount WHERE addsummary.sectionid = OLD.sectionid; "+
                                   "END"
 
-        );*/
+        );
 
 
 
