@@ -192,7 +192,7 @@ public class MuseumManagementBackendApplication {
                 "WHEN in_type = 1 THEN " +
                 "SELECT COUNT(*) INTO out_count FROM Visitors; " +
                 "WHEN in_type = 2 THEN " +
-                "SELECT COUNT(*) INTO out_count FROM Visitors_Global; " +
+                "SELECT COUNT(*) INTO out_count FROM Visitors_Global WHERE DATE(entryDate) = CURDATE(); " +
                 "WHEN in_type = 3 THEN " +
                 "SELECT COUNT(*) INTO out_count FROM Artifacts; " +
                 "WHEN in_type = 4 THEN " +
