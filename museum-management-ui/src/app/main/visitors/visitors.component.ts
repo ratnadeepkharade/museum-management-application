@@ -48,7 +48,7 @@ export class VisitorsComponent implements OnInit {
   showVisitorData() {
     //this.loaderService.show();
     this.restService.getRequest('visitors/visitorList').subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       //this.loaderService.hide();
       this.dataSource = new MatTableDataSource<VisitorModel>(data);
       this.dataSource.paginator = this.paginator;
@@ -101,11 +101,11 @@ export class VisitorsComponent implements OnInit {
       if (result === "ok") {
         this.loaderService.show();
         this.restService.deleteRequest('visitors/delete/' + id).subscribe((data: any[]) => {
-          console.log(data);
+          //console.log(data);
           this.loaderService.hide();
           this.showVisitorData();
         }, (err) => {
-          console.log(err);
+          //console.log(err);
           this.loaderService.hide();
           this.showVisitorData();
         });

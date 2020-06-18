@@ -63,7 +63,7 @@ export class ArtifactsComponent implements OnInit {
   showArtifactData() {
     //this.loaderService.show();
     this.restService.getRequest('artifacts/artifactList').subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       //this.loaderService.hide();
       this.dataSource = new MatTableDataSource<ArtifactModel>(data);
       this.dataSource.paginator = this.paginator;
@@ -116,11 +116,11 @@ export class ArtifactsComponent implements OnInit {
       if (result === "ok") {
         this.loaderService.show();
         this.restService.deleteRequest('artifacts/delete/' + id).subscribe((data: any[]) => {
-          console.log(data);
+          //console.log(data);
           this.loaderService.hide();
           this.showArtifactData();
         }, (err) => {
-          console.log(err);
+          //console.log(err);
           this.loaderService.hide();
           this.showArtifactData();
         });

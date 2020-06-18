@@ -34,7 +34,7 @@ export class AddArtifactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+    //console.log(this.data);
     if (this.data) {
       this.artifact = this.data;
      
@@ -59,22 +59,22 @@ export class AddArtifactComponent implements OnInit {
   }
   getSectionsRESTCall(){
     this.restService.getRequest('sections/sectionList').subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.sections = data;
     }, (err) => {
-      console.log(err);
+      //console.log(err);
     });
   }
   addArtifactRESTCall() {
     let obj = {artifactName: this.artifact.artifactName, artifactType: this.artifact.artifactType,sectionid: this.artifact.sectionid,empid: this.artifact.empid, amount:this.artifact.amount, acquiredFrom: this.artifact.acquiredFrom,quantity: this.artifact.quantity,height: this.artifact.height,width: this.artifact.width,artist: this.artifact.artist,weight: this.artifact.weight,artistsculpt: this.artifact.artistsculpt};
     this.loaderService.show();
     this.restService.postRequest('artifacts/add', obj).subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.loaderService.hide();
       this.dialogRef.close("save");
       
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       this.loaderService.hide();
       this.dialogRef.close("save");
     });
@@ -84,11 +84,11 @@ export class AddArtifactComponent implements OnInit {
     let obj = {artifactid: this.artifact.artifactid,artifactName: this.artifact.artifactName,  artifactType: this.artifact.artifactType,sectionid: this.artifact.sectionid,empid: this.artifact.empid, amount:this.artifact.amount, acquiredFrom: this.artifact.acquiredFrom,quantity: this.artifact.quantity};
     this.loaderService.show();
     this.restService.putRequest('artifacts/update', obj).subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.loaderService.hide();
       this.dialogRef.close("save");
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       this.loaderService.hide();
       this.dialogRef.close("save");
     });

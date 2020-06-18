@@ -29,7 +29,7 @@ export class AddVisitorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+    //console.log(this.data);
     if (this.data) {
       this.visitor = this.data;
       this.getSectionsRESTCall();
@@ -50,10 +50,10 @@ export class AddVisitorComponent implements OnInit {
 
   getSectionsRESTCall(){
     this.restService.getRequest('sections/sectionList').subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.sections = data;
     }, (err) => {
-      console.log(err);
+      //console.log(err);
     });
   }
 
@@ -68,11 +68,11 @@ export class AddVisitorComponent implements OnInit {
     };
     this.loaderService.show();
     this.restService.postRequest('visitors/add', obj).subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.loaderService.hide();
       this.dialogRef.close("save");
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       this.loaderService.hide();
       this.dialogRef.close("save");
     });
@@ -90,11 +90,11 @@ export class AddVisitorComponent implements OnInit {
     };
     this.loaderService.show();
     this.restService.putRequest('visitors/update', obj).subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.loaderService.hide();
       this.dialogRef.close("save");
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       this.loaderService.hide();
       this.dialogRef.close("save");
     });

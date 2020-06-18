@@ -34,7 +34,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+    //console.log(this.data);
     if (this.data) {
       this.employee = this.data;
       
@@ -60,11 +60,11 @@ export class AddEmployeeComponent implements OnInit {
     let obj = {firstName: this.employee.firstName, lastName:this.employee.lastName, emailId: this.employee.emailId, roleName:this.employee.roleName, sectionName:this.employee.sectionName};
     this.loaderService.show();
     this.restService.postRequest('employee/add', obj).subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.loaderService.hide();
       this.dialogRef.close("save");
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       this.loaderService.hide();
       this.dialogRef.close("save");
     });
@@ -74,21 +74,21 @@ export class AddEmployeeComponent implements OnInit {
     let obj = {empId:this.employee.empId,firstName: this.employee.firstName, lastName:this.employee.lastName, emailId: this.employee.emailId, roleName:this.employee.roleName, sectionName:this.employee.sectionName};
     this.loaderService.show();
     this.restService.putRequest('employee/update', obj).subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.loaderService.hide();
       this.dialogRef.close("save");
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       this.loaderService.hide();
       this.dialogRef.close("save");
     });
   }
   getSectionsRESTCall(){
     this.restService.getRequest('sections/sectionList').subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       this.sections = data;
     }, (err) => {
-      console.log(err);
+      //console.log(err);
     });
   }
   enableTextBox(){
