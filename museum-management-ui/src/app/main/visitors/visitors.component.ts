@@ -86,7 +86,7 @@ export class VisitorsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === "save") {
-
+        this.showVisitorData();
       }
     });
   }
