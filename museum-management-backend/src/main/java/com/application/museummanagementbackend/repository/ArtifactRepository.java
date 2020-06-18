@@ -25,7 +25,16 @@ public class ArtifactRepository {
         return artifacts;
 
     }
+    public List<Artifact> getAllSummary() {
+        String sql ="SELECT * FROM addsummary";
 
+
+        List<Artifact> artifacts = (List<Artifact>) jdbcTemplate.query(sql,
+                new BeanPropertyRowMapper(Artifact.class));
+
+        return artifacts;
+
+    }
     public int  deleteArtifact(int artifactsID) {
         String sql = "delete  FROM artifacts where artifactsID=?";
         return jdbcTemplate.update(sql,artifactsID);

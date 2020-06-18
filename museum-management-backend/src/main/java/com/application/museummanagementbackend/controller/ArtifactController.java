@@ -25,6 +25,7 @@ public class ArtifactController {
         return  artifactRepository.getAllArtifact();
     }
 
+
     @DeleteMapping(path = "/delete/{artifactsID}")
     public String deleteArtifact(@PathVariable int artifactsID) {
 
