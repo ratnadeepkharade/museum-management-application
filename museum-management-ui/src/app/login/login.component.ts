@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('in login');
+    //console.log('in login');
     if ( !this.username || !this.password) {
 
     } else {
       this.sendGetRequest().subscribe((data: any[]) => {
-        console.log(data);
+        //console.log(data);
         //this.products = data;
         this.router.navigate(['/main']);
       });

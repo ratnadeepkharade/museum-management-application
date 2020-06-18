@@ -45,7 +45,7 @@ export class EmployeesComponent implements OnInit {
   showEmployeeData() {
     //this.loaderService.show();
     this.restService.getRequest('employee/employeeList').subscribe((data: any[]) => {
-      console.log(data);
+      //console.log(data);
       //this.loaderService.hide();
       this.dataSource = new MatTableDataSource<EmployeeModel>(data);
       this.dataSource.paginator = this.paginator;
@@ -98,11 +98,11 @@ export class EmployeesComponent implements OnInit {
       if (result === "ok") {
         this.loaderService.show();
         this.restService.deleteRequest('employee/delete/' + id).subscribe((data: any[]) => {
-          console.log(data);
+          //console.log(data);
           this.loaderService.hide();
           this.showEmployeeData();
         }, (err) => {
-          console.log(err);
+          //console.log(err);
           this.loaderService.hide();
           this.showEmployeeData();
         });

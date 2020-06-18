@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
   getCurrentVisitorCount(type) {
     //this.loaderService.show();
     this.restService.getRequest('dashboard/count/' + type).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       if (type === 1) {
         this.currentCount = data;
       }
@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
 
   getMonthlyCountRestCall(){
     this.restService.getRequest('dashboard/monthlyCount').subscribe((data:any) => {
-      console.log(data);
+      //console.log(data);
       this.barChartLabels = [];
       this.barChartData[0].data = []
       for (let i = 0; i< data.length; i++) {
@@ -109,7 +109,7 @@ export class DashboardComponent implements OnInit {
 
   getTopSectionsRestCall(){
     this.restService.getRequest('dashboard/topSections').subscribe((data:any) => {
-      console.log(data);
+      //console.log(data);
       this.barChartLabels2 = [];
       this.barChartData2[0].data = []
       for (let i = 0; i< data.length; i++) {
