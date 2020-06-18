@@ -14,8 +14,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootApplication
 public class MuseumManagementBackendApplication {
@@ -87,7 +89,13 @@ public class MuseumManagementBackendApplication {
                 new Section("Main"),
                 new Section("Art Gallery"),
                 new Section("Natural Histroy"),
-                new Section("Ancient Architecture")
+                new Section("Architecture"),
+                new Section("Archaeology"),
+                new Section("Crafts"),
+                new Section("Rare Prints"),
+                new Section("Paintings"),
+                new Section("Sculptures"),
+                new Section("Old Coins")
         );
 
         sectionlist.forEach(x -> {
@@ -148,11 +156,27 @@ public class MuseumManagementBackendApplication {
                 "END"
         );
 
-        List<Visitor> visitorslist = Arrays.asList(
+        Visitor[] visitorsArr = {
                 new Visitor("Brad", "Pitt", "Male", 60, "Daily", 1),
                 new Visitor("Albert", "Einstein", "Male", 60, "Daily", 1),
-                new Visitor("Ratnadeep", "Kharade", "Male", 60, "Daily", 1)
-        );
+                new Visitor("Ratnadeep", "Kharade", "Male", 28, "Daily", 1)
+        };
+
+        List<Visitor> visitorslist = new ArrayList<Visitor>(Arrays.asList(visitorsArr));
+        for (int i=0; i<100; i++) {
+            String[] firstNames = {"John", "James", "David", "Chris", "George", "Daniel", "Ronald", "Emma", "Jane", "Olivia", "Anna", "Amelia"};
+            String[] lastNames = {"Smith", "Johnson", "Brown", "David", "Wilson", "Miller", "Potter", "Schwarz", "Davis", "Rodrigez", "Garcia", "Martin"};
+            String[] categories = {"Daily", "Evening", "Daily Student", "Evening Student", "Children"};
+            String[] gender = {"Male", "Female", "Other"};
+            String[] sections = {"Main", "Art Gallery", "Natural Histroy", "Architecture", "Archaeology", "Crafts", "Rare Prints", "Paintings", "Sculptures", "Old Coins"};
+            int fNameRn = ThreadLocalRandom.current().nextInt(0, firstNames.length);
+            int lNameRn = ThreadLocalRandom.current().nextInt(0, lastNames.length);
+            int catRn = ThreadLocalRandom.current().nextInt(0, categories.length);
+            int gndrRn = ThreadLocalRandom.current().nextInt(0, gender.length);
+            int rndAge = ThreadLocalRandom.current().nextInt(4, 80);
+            long rndSection = ThreadLocalRandom.current().nextInt(1, sections.length);
+            visitorslist.add(new Visitor(firstNames[fNameRn], lastNames[lNameRn], gender[gndrRn], rndAge, categories[catRn], rndSection));
+        }
 
         visitorslist.forEach(x -> {
             log.info("Saving...{}", x.getFirstName());
