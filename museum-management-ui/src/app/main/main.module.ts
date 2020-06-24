@@ -16,6 +16,7 @@ import { AddVisitorComponent } from './visitors/add-visitor/add-visitor.componen
 import { LoaderService } from '../services/loader.service';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 import { AddArtifactComponent } from './artifacts/add-artifact/add-artifact.component';
+import { SectionSummaryComponent } from './artifacts/section-summary/section-summary.component';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { AddArtifactComponent } from './artifacts/add-artifact/add-artifact.comp
     EmployeesComponent, 
     AddVisitorComponent, 
     AddEmployeeComponent, 
-    AddArtifactComponent
+    AddArtifactComponent, SectionSummaryComponent
     
   ],
   imports: [

@@ -2,6 +2,8 @@
     <div class="table-title">
         <h3> Artifact List </h3>
     </div>
+ 
+   
     <div class="actions-wrapper">
         <mat-form-field>
             <mat-label>Search</mat-label>
@@ -9,7 +11,10 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         &nbsp;&nbsp;
-       
+        <button mat-stroked-button (click)="opensectionwiseDialog()">
+            <div class="action-icon"><i class="fas fa-plus-square"></i></div>
+            <div class="action-text">SectionwiseSummary</div>
+        </button>
         <button mat-stroked-button (click)="openAddDialog()">
             <div class="action-icon"><i class="fas fa-plus-square"></i></div>
             <div class="action-text">Add</div>
