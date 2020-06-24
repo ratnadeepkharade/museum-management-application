@@ -282,6 +282,77 @@ public class MuseumManagementBackendApplication {
 
         );
 
+        jdbcTemplate.execute("DROP PROCEDURE IF EXISTS InsertintoEmployee");
+        jdbcTemplate.execute("CREATE PROCEDURE InsertintoEmployee (IN lastName VARCHAR(30),IN firstName VARCHAR(30),IN emailId VARCHAR(30),IN roleName VARCHAR(30),IN SectName VARCHAR(30)) "+
+                "BEGIN "+
+                "DECLARE SectId INT; "+
+                "DECLARE cnt INT; "+
+                "Select count(*) into cnt from section where section.sectionName=SectName; "+
+                "if cnt = 0 then "+
+                "insert into section values (null,SectName); "+
+                "END IF; "+
+                "select sectionId into SectId from section where sectionName=SectName; "+
+                "insert into Employee values(null,lastName,firstName,emailId,roleName,SectId);"+
+                "END");
+        jdbcTemplate.execute("DROP PROCEDURE IF EXISTS UpdateEmployee");
+        jdbcTemplate.execute("CREATE PROCEDURE UpdateEmployee (IN empIdParam int ,IN lastNameParam VARCHAR(30),IN firstNameParam VARCHAR(30),IN emailIdParam VARCHAR(30),IN roleNameParam VARCHAR(30),IN SectNameParam VARCHAR(30)) " +
+                "BEGIN "+
+                "DECLARE SectId INT; " +
+                "DECLARE cnt INT; " +
+                "Select count(*) into cnt from section where section.sectionName=SectNameParam; " +
+                "if cnt = 0 then " +
+                "insert into section values (null,SectNameParam); " +
+                "END IF; " +
+                "select sectionId into SectId from section where sectionName=SectNameParam; " +
+                "update employee set lastName=lastNameParam, firstName=firstNameParam , emailId=emailIdParam,roleName=roleNameParam , sectionId=SectId where empId=empIdParam; " +
+                "END");
+        jdbcTemplate.execute("DROP Trigger IF EXISTS DeleteNotUsedSectionEmployee");
+        jdbcTemplate.execute("CREATE TRIGGER DeleteNotUsedSectionEmployee " +
+                "After Delete On employee " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "Declare cntE int;" +
+                "Declare cntV int;" +
+                "Declare cntA int;" +
+                "Select count(*) into cntE from employee where old.sectionId=employee.sectionId; " +
+                "Select count(*) into cntV from Visitors where old.sectionId=Visitors.sectionId; " +
+                "Select count(*) into cntA from Artifacts where old.sectionId=Artifacts.sectionId; " +
+                "if cntE = 0 and  cntV = 0 and cntA = 0  then " +
+                "delete from section where section.sectionId=old.sectionId; " +
+                "end if; " +
+                "END");
+        jdbcTemplate.execute("DROP Trigger IF EXISTS DeleteNotUsedSectionVisitors");
+        jdbcTemplate.execute("CREATE TRIGGER DeleteNotUsedSectionVisitors " +
+                "After Delete On Visitors " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "Declare cntE int;" +
+                "Declare cntV int;" +
+                "Declare cntA int;" +
+                "Select count(*) into cntE from employee where old.sectionId=employee.sectionId; " +
+                "Select count(*) into cntV from Visitors where old.sectionId=Visitors.sectionId; " +
+                "Select count(*) into cntA from Artifacts where old.sectionId=Artifacts.sectionId; " +
+                "if cntE = 0 and  cntV = 0 and cntA = 0  then " +
+                "delete from section where section.sectionId=old.sectionId; " +
+                "end if; " +
+                "END");
+
+        jdbcTemplate.execute("DROP Trigger IF EXISTS DeleteNotUsedSectionArtifacts");
+        jdbcTemplate.execute("CREATE TRIGGER DeleteNotUsedSectionArtifacts " +
+                "After Delete On Artifacts " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "Declare cntE int;" +
+                "Declare cntV int;" +
+                "Declare cntA int;" +
+                "Select count(*) into cntE from employee where old.sectionId=employee.sectionId; " +
+                "Select count(*) into cntV from Visitors where old.sectionId=Visitors.sectionId; " +
+                "Select count(*) into cntA from Artifacts where old.sectionId=Artifacts.sectionId; " +
+                "if cntE = 0 and  cntV = 0 and cntA = 0  then " +
+                "delete from section where section.sectionId=old.sectionId; " +
+                "end if; " +
+                "END");
+
 
 
     }
