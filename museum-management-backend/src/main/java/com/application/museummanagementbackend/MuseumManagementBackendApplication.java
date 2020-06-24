@@ -14,8 +14,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -42,7 +45,7 @@ public class MuseumManagementBackendApplication {
     @Autowired
     SectionsRepository sectionsRepository;
 
-    void startCustomerApp() {
+    void startCustomerApp() throws ParseException {
         jdbcTemplate.execute("drop table if exists user");
         jdbcTemplate.execute("drop table if exists Visitors");
         jdbcTemplate.execute("drop table if exists artifacts");
@@ -163,7 +166,7 @@ public class MuseumManagementBackendApplication {
         };
 
         List<Visitor> visitorslist = new ArrayList<Visitor>(Arrays.asList(visitorsArr));
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<500; i++) {
             String[] firstNames = {"John", "James", "David", "Chris", "George", "Daniel", "Ronald", "Emma", "Jane", "Olivia", "Anna", "Amelia"};
             String[] lastNames = {"Smith", "Johnson", "Brown", "David", "Wilson", "Miller", "Potter", "Schwarz", "Davis", "Rodrigez", "Garcia", "Martin"};
             String[] categories = {"Daily", "Evening", "Daily Student", "Evening Student", "Children"};
@@ -175,7 +178,19 @@ public class MuseumManagementBackendApplication {
             int gndrRn = ThreadLocalRandom.current().nextInt(0, gender.length);
             int rndAge = ThreadLocalRandom.current().nextInt(4, 80);
             long rndSection = ThreadLocalRandom.current().nextInt(1, sections.length);
-            visitorslist.add(new Visitor(firstNames[fNameRn], lastNames[lNameRn], gender[gndrRn], rndAge, categories[catRn], rndSection));
+            int rndSection2 = ThreadLocalRandom.current().nextInt(1, sections.length);
+            if ((i%5) == 0) {
+                visitorslist.add(new Visitor(firstNames[fNameRn], lastNames[lNameRn], gender[gndrRn], rndAge, categories[catRn], rndSection));
+            } else {
+                String sDate="01/01/2020";
+                String eDate="24/06/2020";
+
+                Date randomDate = new Date(ThreadLocalRandom.current()
+                        .nextLong(new SimpleDateFormat("dd/MM/yyyy").parse(sDate).getTime(), new SimpleDateFormat("dd/MM/yyyy").parse(eDate).getTime()));
+                String vgsql = "INSERT INTO Visitors_Global VALUES("+ 1000 + i +", '"+firstNames[fNameRn]+"', '"+lastNames[lNameRn]+"', '"+gender[gndrRn]+"', "+rndAge+", '"+categories[catRn]+ "',FROM_UNIXTIME("+randomDate.getTime()/1000 + "), FROM_UNIXTIME("+randomDate.getTime()/1000+"),"+rndSection+", '"+sections[rndSection2 - 1]+"')";
+                System.out.print(vgsql+"\n");
+                jdbcTemplate.execute(vgsql);
+            }
         }
 
         visitorslist.forEach(x -> {

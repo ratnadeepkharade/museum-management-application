@@ -98,9 +98,10 @@ export class DashboardComponent implements OnInit {
     this.restService.getRequest('dashboard/monthlyCount').subscribe((data:any) => {
       //console.log(data);
       this.barChartLabels = [];
-      this.barChartData[0].data = []
+      this.barChartData[0].data = [];
+      let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       for (let i = 0; i< data.length; i++) {
-        this.barChartLabels.push(data[i].monthId);
+        this.barChartLabels.push(months[data[i].monthId - 1]);
         this.barChartData[0].data.push(data[i].count)
       }
       //this.loaderService.hide();

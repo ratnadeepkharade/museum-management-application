@@ -54,7 +54,8 @@ public class DashboardRepository {
         String sql ="SELECT Month(entryDate) as monthId, Count(*) as count " +
                 "    FROM Visitors_Global " +
                 "    WHERE entryDate >= CURDATE() - INTERVAL 1 YEAR " +
-                "    GROUP BY Month(entryDate)";
+                "    GROUP BY Month(entryDate) " +
+                "    order by monthId asc";
 
         List<MonthlyCount> monthlyCounts = (List<MonthlyCount>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(MonthlyCount.class));
 
